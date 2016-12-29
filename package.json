@@ -1,5 +1,5 @@
 {
-  "name": "RxMinder",
+  "name": "rx-minder",
   "version": "1.0.0",
   "description": "A simple solution to ensure your medication is taken on time, every time.",
   "engines": {
