@@ -135,19 +135,19 @@ __Using the NodeJS Installer__ - Alternatively, you can use the NodeJS installer
 
  * Create a new database for the project:
  ```
-  $ createdb rx_minder
+  $ createdb rxminder
  ```
 
  * Add the schema to the database:
  ```
-  $ psql -d rx_minder < backend/database/schema.sql
+  $ psql -d rxminder < backend/database/schema.sql
  ```
 
  ![Database Setup Screenshot]( "Database Setup")
 
 __Access the database from the terminal__
  ```
-  $ psql -d rx_minder
+  $ psql -d rxminder
  ```
 
 __Manual query Examples__
