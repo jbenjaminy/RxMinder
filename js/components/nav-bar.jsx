@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
-import LandingPage from './landing-page';
-import AddMed from './add-med';
-import MedsPage from './meds-page';
-import DoseHistory from './dose-history';
+// import LandingPage from './landing-page';
+// import AddMed from './add-med';
+// import MedsPage from './meds-page';
+// import DoseHistory from './dose-history';
 
 function NavBar () {
 	render() {
