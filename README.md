@@ -13,7 +13,7 @@
 
 ## Deployment ##
 
- * A live version of the app can be viewed at [rx-minder.jbenjaminy.com](https://rx-minder.jbenjaminy.com).
+ * A live version of the app can be viewed at [rxminder.jbenjaminy.com](https://rxminder.jbenjaminy.com).
 
 ![RxMinder Screenshot]( "RxMinder")
 
