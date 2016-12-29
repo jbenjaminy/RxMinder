@@ -33,7 +33,7 @@
 
 - - - -
 
-__Git/GitHub__
+#### Git/GitHub ####
  * Create free account on [github.com](https://github.com).
 
  * Check if your Git command-line tools are installed.
@@ -64,62 +64,61 @@ __Git/GitHub__
 
  - - - - 
 
-* __Node.js & NPM__ The code uses NPM to manage dependencies. Make sure you have the latest versions of Node.js and NPM installed.
+#### Node.js & NPM #### - The code uses NPM to manage dependencies. Make sure you have the latest versions of Node.js and NPM installed.
 
- * __Homebrew__ The easiest way is to use Homebrew, a package manager for the Mac.
+__Homebrew__ - The easiest way is to use Homebrew, a package manager for the Mac. 
+* Installing Homebrew.
+  * If you do not yet have homebrew installed, in Terminal, type:
+  ```
+   `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+  ```
 
-  * Install Homebrew.
-   * In Terminal, type:
-   ```
-    `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
-   ```
+  * Follow the prompts to complete the installation process.
 
-   * Follow the prompts to complete the installation process.
+  * Make sure Hombrew has been installed and is working properly:
+  ```
+   `brew doctor`
+  ```
 
-   * Make sure Hombrew has been installed and is working properly:
-   ```
-    `brew doctor`
-   ```
+  * Make sure you are running the latest version of Homebrew:
+  ```
+   `brew update`
+  ```
 
-   * Make sure you are running the latest version of Homebrew:
-   ```
-    `brew update`
-   ```
+* Install Node.js & NPM using Homebrew
+  * In Terminal, type:
+  ```
+   `brew install node`
+  ```
 
-  * Install Node.js & NPM:
-   * In Terminal, type:
-    ```
-     `brew install node`
-    ```
+  * To ensure the files have installed properly or check the version you are running, use the following commands.
+  ```
+   * _For Node.js:_
+   `node -v`
+  ```
 
-   * To ensure the files have installed properly or check the version you are running, use the following commands.
-    * For Node.js:
-	``` 
-	 `node -v`
-	```
+  ```
+   * _For NPM:_
+   `npm -v`
+  ```
 
-	* For NPM:
-	```
-	 `npm -v`
-	```
+  ![Check Node/NPM Versions Screenshot](http://i.imgur.com/ixykO1N.png "Check Node/NPM Versions")
 
-   ![Check Node/NPM Versions Screenshot](http://i.imgur.com/ixykO1N.png "Check Node/NPM Versions")
+  * Make sure Homebrew has the latest version of the Node.js package:
+  ```
+   `brew update`
+  ```
 
-   * Make sure Homebrew has the latest version of the Node.js package:
-   ```
-    `brew update`
-   ```
+  * Upgrade Node.js:
+  ```
+   `brew upgrade node`
+  ```
 
-   * Upgrade Node.js:
-   ```
-    `brew upgrade node`
-   ```
-
- * __NodeJS Installer__ Alternatively, you can use the NodeJS Installer, which can be downloaded directly from [NodeJS.org](https://nodejs.org/en/).
+__NodeJS Installer__ - Alternatively, you can use the NodeJS Installer, which can be downloaded directly from [NodeJS.org](https://nodejs.org/en/).
 
  - - - -
 
-* __PostgreSQL__ The user data is stored in a PostgreSQL database. Use the following steps to get PosgreSQL up and running on your machine and set up the database.
+#### PostgreSQL #### - The user data is stored in a PostgreSQL database. Use the following steps to get PosgreSQL up and running on your machine and set up the database.
 
  * Install PostgreSQL using Homebrew:
  ```
@@ -153,7 +152,7 @@ __Git/GitHub__
   `psql -d rx_minder`
  ```
 
- * _Example queries_
+__Example queries__
   * __Create__
    * Add a new entry to a table:
    ```
@@ -174,25 +173,23 @@ __Git/GitHub__
 	`select COLUMN_ONE_NAME, COLUMN_TWO_NAME from TABLE_NAME where COLUMN_ONE_NAME='VALUE';`
    ```
 
-   * __Update__
-   	* Edit an entry matching a specific paramenter:
-   	```
-	 `update *TABLE_NAME* set *COLUMN_NAME*='VALUE_TWO' where *COLUMN_NAME*='VALUE_ONE';`
-	```
+  * __Update__
+   * Edit an entry matching a specific paramenter:
+   ```
+	`update *TABLE_NAME* set *COLUMN_NAME*='VALUE_TWO' where *COLUMN_NAME*='VALUE_ONE';`
+   ```
 
-   * __Delete__
-    * Remove an entry matching a specific parameter:
-    ```
-	 `delete from *TABLE_NAME* where COLUMN_NAME='VALUE';`
-	```
+  * __Delete__
+   * Remove an entry matching a specific parameter:
+   ```
+	`delete from *TABLE_NAME* where COLUMN_NAME='VALUE';`
+   ```
 	* Remove all entries:
 	```
 	 `delete from TABLE_NAME;`
 	```
 
   ![Manually Querying the Database Screenshot]( "Manually Querying the Database")
-
-- - - -
 
 ## License ##
 
