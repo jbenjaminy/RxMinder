@@ -39,9 +39,9 @@ __Git/GitHub__
  * Create free account on [github.com](https://github.com).
 
  * Check if your Git command-line tools are installed.
-  1. Open the __Terminal__ app and type:
-  	`git`
-  2. Follow the prompts if installation is required.
+  * Open the __Terminal__ app and type:
+   > `git`
+  * Follow the prompts if installation is required.
 
  * Connect your local copy of Git with your GitHub account.
   1) Configure username:
