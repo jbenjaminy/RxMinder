@@ -17,12 +17,6 @@
 
 ![RxMinder Screenshot]( "RxMinder")
 
-## Trello Board ##
-
- * Check out the project's design, bugs, and pending features on [trello.com](https://trello.com/b/smiTIVJi/rxminder).
-
- ![Trello Board Screenshot](http://i.imgur.com/UlKQMUZ.png "Trello Board")
-
 ## Requirements & Local Setup (Mac users) ##
 
 *These instructions will get you a copy of RxMinder up and running on your local machine for development and testing purposes.*
@@ -216,6 +210,12 @@ __Exit the database command prompt__
 * View the app at [localhost:8080](localhost:8080).
 
 - - - -
+
+## Trello Board ##
+
+ * Check out the project's design, bugs, and pending features on [trello.com](https://trello.com/b/smiTIVJi/rxminder).
+
+ ![Trello Board Screenshot](http://i.imgur.com/UlKQMUZ.png "Trello Board")
 
 ## License ##
 

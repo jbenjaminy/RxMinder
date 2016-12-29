@@ -2,7 +2,9 @@ create table if not exists medications (
 	id serial primary key,
 	name text not null unique,
 	dosage integer not null,
+	-- represents # mg of medication
 	frequency integer not null,
+	-- represents # times daily
 	next_dose timestamp not null default now()
 );
 
