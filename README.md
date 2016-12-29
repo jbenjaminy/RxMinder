@@ -21,7 +21,7 @@
 
  * Check out the project's design, bugs, and pending features on [trello.com](https://trello.com/b/smiTIVJi/rxminder).
 
- ![Trello Board Screenshot]( "Trello Board")
+ ![Trello Board Screenshot](http://i.imgur.com/UlKQMUZ.png "Trello Board")
 
 ## Requirements & Local Setup (Mac users) ##
 
@@ -143,7 +143,7 @@ __Using the NodeJS Installer__ - Alternatively, you can use the NodeJS installer
   $ psql -d rxminder < backend/database/schema.sql
  ```
 
- ![Database Setup Screenshot]( "Database Setup")
+ ![Database Setup Screenshot](http://i.imgur.com/UjXOgKB.png "Database Setup")
 
 __Access the database from the terminal__
  ```
@@ -187,7 +187,16 @@ __Manual query Examples__
 	$ delete from TABLE_NAME;
    ```
 
-  ![Manually Querying the Database Screenshot]( "Manually Querying the Database")
+  ![Manually Querying the Database Screenshot](http://i.imgur.com/ILzFFRI.png "Manually Querying the Database")
+
+__Exit the database command prompt__
+ ```
+  $ \q
+ ```
+ __Delete database__
+ ```
+  $ dropdb rxminder
+ ```
 
 - - - -
 
