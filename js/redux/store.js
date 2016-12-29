@@ -1,8 +1,7 @@
 import { createStore, applyMiddleware, compose }  from 'redux';
-var reducer = require('./reducers');
-var actions = require('./actions');
-var thunk = require('redux-thunk').default;
+import reducer from './reducers';
+// import actions from './actions';
+import thunk from 'redux-thunk';
+const store = applyMiddleware(thunk)(createStore)(reducer);
 
-var store = createStore(reducer, compose( applyMiddleware(thunk), window.devToolsExtension ? window.devToolsExtension() : f => f ));
-
-module.exports  = store;
+export default store;
