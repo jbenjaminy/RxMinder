@@ -53,7 +53,7 @@
    $ git config --global user.email ben@jbenjaminy.com
   ```
 
- * Clone repository
+ * Clone the repository.
   * In Terminal, navigate to the directory in which you would like to download a copy of the project's repository, and type:
   ```
    $ git clone https://github.com/jbenjaminy/RxMinder.git
@@ -69,58 +69,58 @@
 
 __Homebrew__ - The easiest way is to use Homebrew, a package manager for the Mac. 
 * Install Homebrew.
-  * If you do not yet have homebrew installed, in Terminal, type:
-  ```
-   $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  ```
+ * If you do not yet have homebrew installed, in Terminal, type:
+ ```
+  $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+ ```
 
-  * Follow the prompts to complete the installation process.
+ * Follow the prompts to complete the installation process.
 
-  * Make sure Hombrew has been installed and is working properly:
-  ```
-   $ brew doctor
-  ```
+ * Make sure Hombrew has been installed and is working properly:
+ ```
+  $ brew doctor
+ ```
 
-  * Make sure you are running the latest version of Homebrew:
-  ```
-   $ brew update
-  ```
+ * Make sure you are running the latest version of Homebrew:
+ ```
+  $ brew update
+ ```
 
 * Install Node.js & NPM using Homebrew.
-  * In Terminal, type:
-  ```
-   $ brew install node
-  ```
+ * In Terminal, type:
+ ```
+  $ brew install node
+ ```
 
-  * To ensure the files have installed properly or check the version you are running, use the following commands.
-   * _For Node.js:_
-  ```
-   $ node -v 
-  ```
+* Ensure the files have installed properly or check the version you are running.
+ * For Node.js:
+ ```
+  $ node -v 
+ ```
 
-  * _For NPM:_
-  ```
-   $ npm -v
-  ```
+ * For NPM:
+ ```
+  $ npm -v
+ ```
 
-  ![Check Node/NPM Versions Screenshot](http://i.imgur.com/ixykO1N.png "Check Node/NPM Versions")
+![Check Node/NPM Versions Screenshot](http://i.imgur.com/ixykO1N.png "Check Node/NPM Versions")
 
-  * Make sure Homebrew has the latest version of the Node.js package:
-  ```
-   $ brew update
-  ```
+* Check that Homebrew has the latest version of the Node.js package:
+ ```
+  $ brew update
+ ```
 
-  * Upgrade Node.js:
-  ```
-   $ brew upgrade node
-  ```
+* Upgrade Node.js:
+ ```
+  $ brew upgrade node
+ ```
 
-__NodeJS Installer__ - Alternatively, you can use the NodeJS Installer, which can be downloaded directly from [NodeJS.org](https://nodejs.org/en/).
+__NodeJS Installer__ - Alternatively, you can use the Node.js installer, which can be downloaded directly from [NodeJS.org](https://nodejs.org/en/).
 
  - - - -
 
 #### PostgreSQL ####
-*The user data is stored in a PostgreSQL database. Use the following steps to get PosgreSQL up and running on your machine and set up the database.*
+*The user data is stored in a PostgreSQL database. Use the following steps to run PosgreSQL on your machine and configure the database.*
 
  * Install PostgreSQL using Homebrew:
  ```
