@@ -23,7 +23,7 @@
 
  ![Trello Board Screenshot]( "Trello Board")
 
-## Local Setup & Requirements (Mac users)##
+## Requirements & Local Setup (Mac users) ##
 
 *These instructions will get you a copy of RxMinder up and running on your local machine for development and testing purposes.*
 
@@ -145,7 +145,7 @@ __Using the NodeJS Installer__ - Alternatively, you can use the NodeJS installer
 
  ![Database Setup Screenshot]( "Database Setup")
 
- __Access the database from the terminal__
+__Access the database from the terminal__
  ```
   $ psql -d rx_minder
  ```
@@ -174,13 +174,13 @@ __Manual query Examples__
   * __Update__
    * Edit an entry matching a specific paramenter:
    ```
-	$ update *TABLE_NAME* set *COLUMN_NAME*='VALUE_TWO' where *COLUMN_NAME*='VALUE_ONE';
+	$ update *TABLE_NAME* set COLUMN_NAME='VALUE_TWO' where COLUMN_NAME='VALUE_ONE';
    ```
 
   * __Delete__
    * Remove an entry matching a specific parameter:
    ```
-	$ delete from *TABLE_NAME* where COLUMN_NAME='VALUE';
+	$ delete from TABLE_NAME where COLUMN_NAME='VALUE';
    ```
    * Remove all entries:
    ```
@@ -188,6 +188,25 @@ __Manual query Examples__
    ```
 
   ![Manually Querying the Database Screenshot]( "Manually Querying the Database")
+
+- - - -
+
+### Run the app locally ###
+
+* Create a new build:
+```
+ $ npm run build
+```
+
+* Start the server:
+
+```
+ $ npm run start
+```
+
+* View the app at [localhost:8080](localhost:8080).
+
+- - - -
 
 ## License ##
 
