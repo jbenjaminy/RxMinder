@@ -23,11 +23,11 @@ const routes = (
     <Route path='/' component={App}>
       <IndexRoute component={LandingPage} />
       <Route path='/medication' component={MedsPage} />
-      <Route path='/medication/new' component={AddMed} />
+      <Route path='/new' component={AddMed} />
+      <Route path='/history' component={DoseHistory} />
       <Route path='/medication/:medName'>
         <IndexRoute component={MedDetails} />
       </Route>
-      <Route path='/medication/history' component={DoseHistory} />
     </Route>
   </Router>
 );

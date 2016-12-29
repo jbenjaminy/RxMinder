@@ -10,6 +10,7 @@ class MedDetails extends React.Component {
         this.editMed = this.editMed.bind(this);
         this.deleteMed = this.deleteMed.bind(this);
         this.submitEdit = this.deleteMed.bind(this);
+        this.cancelEdit = this.cancelEdit.bind(this);
     }
 
     editMed(property) {
@@ -34,6 +35,7 @@ class MedDetails extends React.Component {
     }
 
     render() {
+    	console.log('state:', this.props.state);
     	let time = moment(med.nextDose).format('MMM Do YYYY, h:mm A');
     	if (this.props.med.edit !== '') {
     		return (

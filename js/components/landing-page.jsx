@@ -16,7 +16,7 @@ class LandingPage extends React.Component {
     }
 
     render() {
-        console.log('state', this.props.state);
+        console.log('state:', this.props.state);
         let dueMessage = 'Take the following medication now!';
         let upcomingFeed = 'You are scheduled to take the following medication at a future time:';
         
