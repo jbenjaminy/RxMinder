@@ -23,17 +23,13 @@
 
  ![Trello Board Screenshot]( "Trello Board")
 
-## Local Setup (Mac users)##
+## Local Setup & Requirements (Mac users)##
 
 *These instructions will get you a copy of RxMinder up and running on your local machine for development and testing purposes.*
 
-### Requirements ###
-
-*The technologies you will need and how to install them.*
-
 - - - -
 
-#### Git/GitHub ####
+### Git/GitHub ###
  * Create free account on [github.com](https://github.com).
 
  * Check if your Git command-line tools are installed.
@@ -64,10 +60,10 @@
 
  - - - - 
 
-#### Node.js & NPM ####
+### Node.js & NPM ###
 *The code uses NPM to manage dependencies. Make sure you have the latest versions of Node.js and NPM installed.*
 
-__Homebrew__ - The easiest way is to use Homebrew, a package manager for the Mac. 
+__Using Homebrew__ - The easiest way is to use Homebrew, a package manager for the Mac.
 * Install Homebrew.
  * If you do not yet have homebrew installed, in Terminal, type:
  ```
@@ -76,12 +72,12 @@ __Homebrew__ - The easiest way is to use Homebrew, a package manager for the Mac
 
  * Follow the prompts to complete the installation process.
 
- * Make sure Hombrew has been installed and is working properly:
+ * Ensure that Homebrew has been installed and is working properly:
  ```
   $ brew doctor
  ```
 
- * Make sure you are running the latest version of Homebrew:
+ * Check that you are running the latest version of Homebrew:
  ```
   $ brew update
  ```
@@ -115,11 +111,11 @@ __Homebrew__ - The easiest way is to use Homebrew, a package manager for the Mac
   $ brew upgrade node
  ```
 
-__NodeJS Installer__ - Alternatively, you can use the Node.js installer, which can be downloaded directly from [NodeJS.org](https://nodejs.org/en/).
+__Using the NodeJS Installer__ - Alternatively, you can use the NodeJS installer, which can be downloaded directly from [NodeJS.org](https://nodejs.org/en/).
 
  - - - -
 
-#### PostgreSQL ####
+### PostgreSQL ###
 *The user data is stored in a PostgreSQL database. Use the following steps to run PosgreSQL on your machine and configure the database.*
 
  * Install PostgreSQL using Homebrew:
