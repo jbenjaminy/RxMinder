@@ -40,7 +40,9 @@ __Git/GitHub__
 
  * Check if your Git command-line tools are installed.
   * Open the __Terminal__ app and type:
-   > `git`
+ ```
+ git
+ ```
   * Follow the prompts if installation is required.
 
  * Connect your local copy of Git with your GitHub account.
