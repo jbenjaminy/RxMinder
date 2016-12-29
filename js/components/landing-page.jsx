@@ -21,6 +21,7 @@ class LandingPage extends React.Component {
         let upcomingFeed = 'You are scheduled to take the following medication at a future time:';
         
         let dueFeed = this.props.due.map((med) => {
+            let time = moment(due.nextDose).format('MMM Do YYYY, h:mm A');
             return (
                 <li key={med.id}>
                     <p className='name'>{med.name}</p>
@@ -31,6 +32,7 @@ class LandingPage extends React.Component {
         });
 
         let upcomingFeed = this.props.upcoming.map((med) => {
+            let time = moment(upcoming.nextDose).format('MMM Do YYYY, h:mm A');
             return (
                 <li key={med.id}>
                     <p className='name'>{med.name}</p>

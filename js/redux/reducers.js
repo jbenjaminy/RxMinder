@@ -5,6 +5,14 @@ let initialState = {
 		history: [],
 	},
 	medDetails: {
+    id: '',
+    name: '',
+    dosage: '',
+    frequency: '',
+    nextDose: '',
+    instructions: '',
+    precautions: '',
+    edit: ''
 	},
 	notifications: []
 };

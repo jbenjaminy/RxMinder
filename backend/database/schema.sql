@@ -5,7 +5,9 @@ create table if not exists medications (
 	-- represents # mg of medication
 	frequency integer not null,
 	-- represents # times daily
-	next_dose timestamp not null default now()
+	next_dose timestamp not null default now(),
+	instructions text,
+	precautions text
 );
 
 create table if not exists med_history (
