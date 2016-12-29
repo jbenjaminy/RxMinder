@@ -30,7 +30,6 @@ const routes = (
       <Route path='/medication/history' component={DoseHistory} />
     </Route>
   </Router>
-
 );
 
 export default routes;
