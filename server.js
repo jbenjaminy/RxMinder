@@ -42,29 +42,52 @@ app.get('/medication', jsonParser, (request, response) => {
         			upcomingMeds.push(med);
         		}
         	});
-        	return response.status(200).json({dueMeds: dueMeds, upcomingMeds: upcomingMeds});
-        }).catch((err) => {
-            response.status(500).json({'error: ' error});
+        	return response.status(200).json({
+        		dueMeds: dueMeds, upcomingMeds: upcomingMeds
+        	});
+        })
+        .catch((error) => {
+            response.status(500).json({
+            	error: error
+            });
         });
 )};
 
 // Select the details of a specific medication by id
 app.get('/medication/:id', jsonParser, (request, response) => {
+	let id = request.params.id;
 	knex.select()
-        .from('questions')
-        .where({ is_answered: false })
-        .orderBy('when_asked', 'desc')
-        .then((questions) => {
-            // same nested loop to add tags to question objects before resolving
-            resolve({ questions: questions });
-        }).catch((err) => {
-            reject(err);
+        .from('medications')
+        .where({ id: id })
+        .returning(['id', 'name', 'dosage', 'num_doses', 'next_dose_secs', 'next_dose_date', 'instructions', 'precautions'])
+        .then((medication) => {
+            return response.status(200).json({
+            	id: medication.id, name: medication.name, dosage: medication.dosage, numDoses: medication.num_doses, nextDoseSecs: medication.next_dose_secs, nextDoseDate: medication.next_dose_date, instructions: medication.instructions, precautions: medication.precautions
+            });
+        })
+        .catch((error) => {
+            response.status(500).json({
+            	error: error
+            });
         });
-
 });
 
 // Select all past doses from dose_history table
 app.get('/medication/history', jsonParser, (request, response) => {
+	knex.select()
+        .from('doseHistory')
+        .orderBy('next_dose_secs', 'desc')
+        .returning(['id', 'med_name', 'med_id', 'med_dosage', 'when_taken'])
+        .then((data) => {
+        	return response.status(200).json({
+        		doseHistory: data
+        	});
+        })
+        .catch((error) => {
+            response.status(500).json({
+            	error: error
+            });
+        });
 
 })
 
@@ -85,16 +108,18 @@ app.post('/medication/new', jsonParser, (request, response) => {
 	let nextDoseDate = new Date(0);
 	nextDoseDate.setUTCSeconds(nextDose);
 
-	knex.insert({ name: name, dosage: dosage, num_doses: numDoses, frequency: frequency, next_dose_secs: nextDoseSecs, next_dose_date: nextDoseDate, instructions: instrucstions, precautions: precautions })
-        .returning(['name', 'dosage', 'num_doses', 'next_dose_secs', 'next_dose_date', 'instructions', 'precautions'])
+	knex.insert({ name: name, dosage: dosage, num_doses: numDoses, frequency: frequency, next_dose_secs: nextDoseSecs, next_dose_date: nextDoseDate, instructions: instructions, precautions: precautions })
+        .returning(['id', 'name', 'dosage', 'num_doses', 'next_dose_secs', 'next_dose_date', 'instructions', 'precautions'])
         .into('medication')
         .then((data) => {
             return response.status(201).json({
-            	name: data[0].name, dosage: data[0].dosage, numDoses: data[0].num_doses, nextDoseSecs: data[0].next_dose_secs, nextDoseDate: data[0].next_dose_date, instructions: data[0].instrucstion, precautions: data[0].precautions
+            	id: data[0].id, name: data[0].name, dosage: data[0].dosage, numDoses: data[0].num_doses, nextDoseSecs: data[0].next_dose_secs, nextDoseDate: data[0].next_dose_date, instructions: data[0].instructions, precautions: data[0].precautions
             });
         })
         .catch((error) => {
-            response.status(500).json({'error: ' error});
+            response.status(500).json({
+            	error: error
+            });
         });
 });
 
@@ -107,7 +132,35 @@ app.put('/medication/update/:id', jsonParser, (request, response) => {
 
 // Delete a medication from the medication table
 app.delete('/medication/:id', jsonParser, (request, response) => {
+	let id = request.params.id;
+    const promise = deleteHistory(id);
+    promise.then((id) => {
+    	knex.delete()
+			.from('medication')
+			.where({ id: id })
+			.then((data) => {
+				return response.status(200).json({result: 'Medication deleted successfully.'});
+			})
+			.catch((error) => {
+				response.status(500).json({
+            		error: error
+            	});
+			});
+    });
 
+    let deleteHistory = (id) => {
+        return new Promise((resolve, reject) => {
+			knex.delete()
+				.from('dose_history')
+				.where({ med_id: id })
+				.then((data) => {
+					resolve(id);
+				})
+				.catch((error) => {
+					reject(error);
+				});
+		});
+	}
 });
 
 /*---------- RUN SERVER FUNCTION ----------*/
