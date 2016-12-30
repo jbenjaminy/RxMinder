@@ -27,14 +27,26 @@ class LandingPage extends React.Component {
         this.props.dispatch(actions.selectMed(medId));
     }
 
-    markDose(id, frequency) {
-        this.props.dispatch(actions.submitEdit(id, 'next_dose_secs', frequency));
+    markDose(id, frequency, nextDoseSecs) {
+        let nextDoseSecsEdit = parseInt(nextDoseSecs) + frequency;
+        let nextDoseDate = new Date(0);
+        nextDoseDate.setUTCSeconds(nextDoseSecsEdit);
+        nextDoseSecsEdit = nextDoseSecsEdit.toString();
+
+        this.props.dispatch(actions.submitEdit(id, 'next_dose_secs', nextDoseSecsEdit));
+        this.props.dispatch(actions.submitEdit(id, 'next_dose_date', nextDoseDate));
         this.props.dispatch(actions.addHistory(id));
         this.props.dispatch(actions.fetchSchedule());
     }
 
-    skipDose(id, frequency) {
-        this.props.dispatch(actions.submitEdit(id, 'next_dose_secs', frequency));
+    skipDose(id, frequency, nextDoseSecs) {
+        let nextDoseSecsEdit = parseInt(nextDoseSecs) + frequency;
+        let nextDoseDate = new Date(0);
+        nextDoseDate.setUTCSeconds(nextDoseSecsEdit);
+        nextDoseSecsEdit = nextDoseSecsEdit.toString();
+
+        this.props.dispatch(actions.submitEdit(id, 'next_dose_secs', nextDoseSecsEdit));
+        this.props.dispatch(actions.submitEdit(id, 'next_dose_date', nextDoseDate));
         this.props.dispatch(actions.fetchSchedule());
     }
 
@@ -44,20 +56,20 @@ class LandingPage extends React.Component {
         let upcomingMessage = 'You are scheduled to take the following medication at a future time:';
         
         let dueFeed = this.props.due.map((med) => {
-            let time = moment(due.nextDose).format('MMM Do YYYY, h:mm A');
+            let time = moment(due.nextDoseDate).format('MMM Do YYYY, h:mm A');
             return (
                 <li key={med.id}>
                     <a onClick={this.selectMed.bind(this, med.id)}><p className='name'>{med.name}</p></a>
                     <p className='dosage'>{med.dosage}</p>
                     <p className='date'>{time}</p>
-                    <button type='button' onClick={this.markDose.bind(this, med.id, med.frequency)}>Mark Dose Taken</button>
-                    <button type='button' onClick={this.skipDose.bind(this, med.id, med.frequency)}>Skip Dose</button>
+                    <button type='button' onClick={this.markDose.bind(this, med.id, med.frequency, med.nextDoseSecs)}>Mark Dose Taken</button>
+                    <button type='button' onClick={this.skipDose.bind(this, med.id, med.frequency, med.nextDoseSecs)}>Skip Dose</button>
                 </li>
             )
         });
 
         let upcomingFeed = this.props.upcoming.map((med) => {
-            let time = moment(upcoming.nextDose).format('MMM Do YYYY, h:mm A');
+            let time = moment(upcoming.nextDoseDate).format('MMM Do YYYY, h:mm A');
             return (
                 <li key={med.id}>
                     <a onClick={this.selectMed.bind(this, med.id)}><p className='name'>{med.name}</p></a>

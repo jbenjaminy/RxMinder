@@ -36,6 +36,7 @@ app.get('/medication', jsonParser, (request, response) => {
         .orderBy('next_dose_secs')
         .then((data) => {
         	data.forEach((med) => {
+                let next_dose_secs = parseInt(med.next_dose_secs);
         		if (time > next_dose_secs) {
         			dueMeds.push(med);
         		} else {

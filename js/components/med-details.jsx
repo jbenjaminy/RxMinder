@@ -36,14 +36,15 @@ class MedDetails extends React.Component {
     	if (this.props.med.edit === 'hours to next dose') {
     		editProp = 'next_dose_secs'
             editVal = editVal * 3600;
-            editVal = editVal + this.props.med.nextDoseSecs;
+            editVal = editVal + parseInt(this.props.med.nextDoseSecs);
     	}
         if (this.props.med.edit === 'doses per day') {
             editProp = 'num_doses'
             let frequency = Math.floor(24 / numDoses);
             frequecy = 3600 * frequency;
-            let nextDoseSecs = this.props.nextDoseSecs + (frequency - this.props.frequency);
+            let nextDoseSecs = parseInt(this.props.nextDoseSecs) + (frequency - this.props.frequency);
             let nextDoseDate = new Date(0);
+            nextDoseSecs = nextDoseSecs.toString();
             nextDoseDate.setUTCSeconds(nextDoseSecs);
             this.props.dispatch(actions.submitEdit(id, 'frequency', frequency));
             this.props.dispatch(actions.submitEdit(id, 'next_dose_secs', nextDoseSecs));
