@@ -37,7 +37,7 @@ app.get('/medication', jsonParser, (request, response) => {
         .then((data) => {
         	data.forEach((med) => {
                 let next_dose_secs = parseInt(med.next_dose_secs);
-        		if ((time*1000) > next_dose_secs) {
+        		if (time > next_dose_secs) {
         			dueMeds.push({id: med.id, name: med.name, dosage: med.dosage, numDoses: med.num_doses, frequency: med.frequency, nextDoseSecs: med.next_dose_secs, nextDoseDate: med.next_dose_date, instructions: med.instructions, precautions: med.precautions});
         		} else {
                     upcomingMeds.push({id: med.id, name: med.name, dosage: med.dosage, numDoses: med.num_doses, frequency: med.frequency, nextDoseSecs: med.next_dose_secs, nextDoseDate: med.next_dose_date, instructions: med.instructions, precautions: med.precautions});
