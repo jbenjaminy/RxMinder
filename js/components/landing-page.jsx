@@ -53,46 +53,45 @@ class LandingPage extends React.Component {
     render() {
         console.log('state:', this.props.state);
         let dueMessage = 'Take the following medication now!';
-        let upcomingMessage = 'You are scheduled to take the following medication at a future time:';
+        let upcomingMessage = 'Future medication schedule:';
         
         let dueFeed = this.props.due.map((med) => {
-            let time = moment(due.nextDoseDate).format('MMM Do YYYY, h:mm A');
             return (
                 <li key={med.id}>
-                    <a onClick={this.selectMed.bind(this, med.id)}><p className='name'>{med.name}</p></a>
-                    <p className='dosage'>{med.dosage}</p>
-                    <p className='date'>{time}</p>
-                    <button type='button' onClick={this.markDose.bind(this, med.id, med.frequency, med.nextDoseSecs)}>Mark Dose Taken</button>
+                    <a onClick={this.selectMed.bind(this, med.id)}><h3 className='dosage'>{med.dosage} mg of {med.name}</h3></a>
+                    <button type='button' onClick={this.markDose.bind(this, med.id, med.frequency, med.nextDoseSecs)}>Dose Taken</button>
                     <button type='button' onClick={this.skipDose.bind(this, med.id, med.frequency, med.nextDoseSecs)}>Skip Dose</button>
+                    <hr/>
                 </li>
             )
         });
 
         let upcomingFeed = this.props.upcoming.map((med) => {
-            let time = moment(upcoming.nextDoseDate).format('MMM Do YYYY, h:mm A');
+            console.log(med.nextDoseDate);
+            let time = moment(med.nextDoseDate).format('MMM Do YYYY, h:mm A');
             return (
                 <li key={med.id}>
-                    <a onClick={this.selectMed.bind(this, med.id)}><p className='name'>{med.name}</p></a>
-                    <p className='dosage'>{med.dosage}</p>
-                    <p className='date'>{time}</p>
+                    <a onClick={this.selectMed.bind(this, med.id)}><h3 className='dosage'>{med.dosage} mg of {med.name}</h3></a>
+                    <h3 className='date'>@ {time}</h3>
+                    <hr/>
                 </li>
             )
         });
 
         if (dueFeed.length === 0) {
-            dueMessage = 'You are currently caught up on all medication.';
+            dueMessage = '';
         } 
         if (upcomingFeed.length === 0 && dueFeed.length === 0) {
-            dueMessage = 'You are not currently scheduled to take any medication.';
+            dueMessage = 'You have no medication scheduled.';
             upcomingMessage = '';
         }
 
         return (
             <div className='landing-page'>
                 <h2>{dueMessage}</h2>
-                <ul>{dueFeed}</ul>
+                <ul className='med-feed'>{dueFeed}</ul>
                 <h2>{upcomingMessage}</h2>
-                <ul>{upcomingFeed}</ul>
+                <ul className='med-feed'>{upcomingFeed}</ul>
             </div>
         );
     }

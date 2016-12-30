@@ -17,19 +17,16 @@ let fetchSchedule = () => {
                 error.response = response;
                 throw error;
             }
-            return response;
-        })
-        .then((response) =>{
             return response.json();
         })
         .then((data) => {
-            return {
+            return dispatch ({
                 type: 'updateMedList',
                 data: {
                     due: data.dueMeds,
                     list: data.upcomingMeds
                 }
-            };
+            });
         })
         .catch((error) => {
             console.error(error);
@@ -54,18 +51,15 @@ let fetchMeds = () => {
                 error.response = response;
                 throw error;
             }
-            return response;
-        })
-        .then((response) =>{
             return response.json();
         })
         .then((data) => {
-            return {
+            return dispatch ({
                 type: 'updateMedList',
                 data: {
                     list: data.allMeds
                 }
-            };
+            });
         })
         .catch((error) => {
             console.error(error);
@@ -90,18 +84,15 @@ let fetchHistory = () => {
                 error.response = response;
                 throw error;
             }
-            return response;
-        })
-        .then((response) =>{
             return response.json();
         })
         .then((data) => {
-            return {
+            return dispatch ({
                 type: 'updateMedList',
                 data: {
                     list: data.doseHistory
                 }
-            };
+            });
         })
         .catch((error) => {
             console.error(error);
@@ -135,16 +126,13 @@ let addMed = (name, dosage, numDoses, firstDose, instructions, precautions) => {
                 error.response = response;
                 throw error;
             }
-            return response;
-        })
-        .then((response) =>{
             return response.json();
         })
         .then((data) => {
-            return {
+            return dispatch ({
                 type: 'updateMedDetails',
                 data: data
-            };
+            });
         })
         .catch((error) => {
             console.error(error);
@@ -170,13 +158,13 @@ let addHistory = (id) => {
                 error.response = response;
                 throw error;
             }
-            return response;
-        })
-        .then((response) =>{
             return response.json();
         })
         .then((data) => {
-            console.log(data.result)
+            return dispatch ({
+                type: 'upcomingMeds',
+                data: {}
+            });
         })
         .catch((error) => {
             console.error(error);
@@ -201,16 +189,13 @@ let selectMed = (id) => {
                 error.response = response;
                 throw error;
             }
-            return response;
-        })
-        .then((response) =>{
             return response.json();
         })
         .then((data) => {
-            return {
+            return dispatch ({
                 type: 'updateMedDetails',
                 data: data
-            };
+            });
         })
         .catch((error) => {
             console.error(error);
@@ -279,13 +264,13 @@ let submitEdit = (id, editProp, editVal) => {
                 error.response = response;
                 throw error;
             }
-            return response;
-        })
-        .then((response) =>{
             return response.json();
         })
         .then((data) => {
-            console.log(data.result);
+            return dispatch ({
+                type: 'upcomingMeds',
+                data: {}
+            });
         })
         .catch((error) => {
             console.error(error);
@@ -311,13 +296,13 @@ let deleteMed = (id) => {
                 error.response = response;
                 throw error;
             }
-            return response;
-        })
-        .then((response) =>{
             return response.json();
         })
         .then((data) => {
-            console.log(data.result);
+            return dispatch ({
+                type: 'upcomingMeds',
+                data: {}
+            });
         })
         .catch((error) => {
             console.error(error);
