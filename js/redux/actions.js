@@ -185,9 +185,9 @@ let addHistory = (id) => {
 };
 
 // Get the details for a particular medication
-let selectMed = () => {
+let selectMed = (id) => {
     return (dispatch) => {
-        let url = '/medication';
+        let url = `/medication/${id}`;
         let request = {
             headers: {
                 'Accept': 'application/json',
@@ -208,11 +208,8 @@ let selectMed = () => {
         })
         .then((data) => {
             return {
-                type: 'updateMedList',
-                data: {
-                    due: data.dueMeds,
-                    list: data.upcomingMeds
-                }
+                type: 'updateMedDetails',
+                data: data
             };
         })
         .catch((error) => {
