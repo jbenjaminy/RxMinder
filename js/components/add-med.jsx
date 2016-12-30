@@ -16,12 +16,21 @@ class AddMed extends React.Component {
     }
 
     addMed() {
-    	this.props.dispatch(actions.addMed())
+    	this.props.dispatch(actions.addMed(this.refs.nameVal.value, this.refs.dosageVal.value, this.refs.frequencyVal.value, this.refs.nextDoseVal.value, this.refs.instructionsVal.value, this.refs.precautionsVal.value));
     }
 
     render() {
     	return (
     		<div className='addMed'>
+    			<ul>
+    				<li><h3>What is the medication name?</h3><input type='text' placeholder='Enter the name on the label' ref='nameVal' required/></li>
+    				<li><h3>What is the prescribed dosage?</h3><input type='text' placeholder='Enter the number of mg per dose' ref='dosageVal' required/></li>
+    				<li><h3>How many times will you take the medication daily?</h3><input type='text' placeholder='Enter the number of daily doses' ref='frequencyVal' required /></li>
+    				<li><h3>When do you plan to take the first dose?</h3><input type='text' placeholder='Enter the number of hours from now' ref='nextDoseVal' required /></li>
+    				<li><h3>Are there any special instructions?</h3><input type='text' placeholder='Optional' ref='instructionsVal' /></li>
+    				<li><h3>Are there any warnings on the label about side effects or interactions with other drugs?</h3><input type='text' placeholder='optional' ref='precautionsVal' /></li>
+    				<button type='button' onClick={this.addMed()}>Submit</button>
+    			</ul>
     		</div>
     	);
     }
