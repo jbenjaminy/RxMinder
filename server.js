@@ -164,7 +164,20 @@ app.post('/history/new/:id', jsonParser, (request, response) => {
 app.put('/medication/update/:id', jsonParser, (request, response) => {
 	let column = request.body.editProp;
 	let value = request.body.editVal;
-
+	knex.('medication')
+		.update({column: value})
+		.where({id: id})
+		.returning(['id', 'name', 'dosage', 'num_doses', 'next_dose_secs', 'next_dose_date', 'instructions', 'precautions'])
+		.then((medication) => {
+			return response.status(200).json({
+				id: medication.id, name: medication.name, dosage: medication.dosage, numDoses: medication.num_doses, nextDoseSecs: medication.next_dose_secs, nextDoseDate: medication.next_dose_date, instructions: medication.instructions, precautions: medication.precautions
+			})
+		})
+		.catch((error) => {
+            response.status(500).json({
+            	error: error
+            });
+        });
 });
 
 // Delete a medication from the medication table
