@@ -51,7 +51,7 @@ app.get('/medication', jsonParser, (request, response) => {
             	error: error
             });
         });
-)};
+});
 
 // Select all medication entries from medication table
 app.get('/medication/all', jsonParser, (request, response) => {
@@ -68,7 +68,7 @@ app.get('/medication/all', jsonParser, (request, response) => {
                 error: error
             });
         });
-)};
+});
 
 // Select the details of a specific medication by id
 app.get('/medication/:id', jsonParser, (request, response) => {
@@ -145,11 +145,12 @@ app.post('/history/new/:id', jsonParser, (request, response) => {
 	let id = request.params.id;
 	const promise = selectMed(id);
     promise.then((data) => {
-		knex.insert({ med_id: data.medId, med_name: data.medName, med_dosage: data.medDosage
+		knex.insert({ med_id: data.medId, med_name: data.medName, med_dosage: data.medDosage })
         	.into('dose_history')
         	.then((data) => {
-            return response.status(201).json({
-            	result: 'Dose added to history successfully.'
+                return response.status(201).json({
+            	   result: 'Dose added to history successfully.'
+                });
 	        })
 	        .catch((error) => {
 	            response.status(500).json({
@@ -159,30 +160,30 @@ app.post('/history/new/:id', jsonParser, (request, response) => {
 	});
     let selectMed = (id) => {
         return new Promise((resolve, reject) => {
-			knex.select()
-				.from('medication')
-				.where({ id: id })
-				.returning(['id', 'name', 'dosage'])
-				.then((medication) => {
-					resolve({
-						'medId': id, 'medName': name, 'medDosage': dosage
-					});
-				})
-				.catch((error) => {
-					reject({
-						error: error
-					});
-				});
-		});
-	}
+            knex.select()
+                .from('medication')
+                .where({ id: id })
+                .returning(['id', 'name', 'dosage'])
+                .then((medication) => {
+                    resolve({
+                        'medId': id, 'medName': name, 'medDosage': dosage
+                    });
+                })
+                .catch((error) => {
+                    reject({
+                        error: error
+                    });
+                });
+        });
+    };
 });
 
 // Edit the details of an existing medication
 app.put('/medication/update/:id', jsonParser, (request, response) => {
 	let column = request.body.editProp;
 	let value = request.body.editVal;
-	knex.('medication')
-		.update({column: value})
+	knex.update({column: value})
+        .from('medication')
 		.where({id: id})
 		.returning(['id', 'name', 'dosage', 'num_doses', 'frequency', 'next_dose_secs', 'next_dose_date', 'instructions', 'precautions'])
 		.then((medication) => {
