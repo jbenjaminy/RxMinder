@@ -28,20 +28,38 @@ app.use((request, response, next) => {
 
 // Select all medication entries from medication table
 app.get('/medication', jsonParser, (request, response) => {
+	let time = new Date().getTime() / 1000;
+	let dueMeds = [];
+	let upcomingMeds = [];
 	knex.select()
-        .from('messages')
-        .where({ question_id: questionID })
-        .returning('message_text', 'user_name', 'when_sent')
-        .orderBy('when_sent')
-        .then((messages) => {
-            resolve({ messages: messages });
+        .from('medication')
+        .orderBy('next_dose_secs')
+        .then((data) => {
+        	data.forEach((med) => {
+        		if (time > next_dose_secs) {
+        			dueMeds.push(med);
+        		} else {
+        			upcomingMeds.push(med);
+        		}
+        	});
+        	return response.status(200).json({dueMeds: dueMeds, upcomingMeds: upcomingMeds});
         }).catch((err) => {
-            reject(err);
+            response.status(500).json({'error: ' error});
         });
 )};
 
 // Select the details of a specific medication by id
 app.get('/medication/:id', jsonParser, (request, response) => {
+	knex.select()
+        .from('questions')
+        .where({ is_answered: false })
+        .orderBy('when_asked', 'desc')
+        .then((questions) => {
+            // same nested loop to add tags to question objects before resolving
+            resolve({ questions: questions });
+        }).catch((err) => {
+            reject(err);
+        });
 
 });
 
