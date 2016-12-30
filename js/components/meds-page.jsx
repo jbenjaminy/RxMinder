@@ -9,6 +9,10 @@ class MedsPage extends React.Component {
         this.selectMed = this.selectMed.bind(this);
     }
 
+    componentDidMount() {
+        this.props.dispatch(actions.fetchMeds());
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.med.name !== '') {
             browserHistory.push(`/medication/${nextProps.med.name}`);
@@ -28,8 +32,9 @@ class MedsPage extends React.Component {
             )
         });
     	return (
-    		<div className='addMed'>
+    		<div className='meds-page'>
     			<ul>
+                    {medFeed}
     			</ul>
     		</div>
     	);
@@ -39,7 +44,7 @@ class MedsPage extends React.Component {
 const mapStateToProps = (state) => {
     return {
         state: state,
-        meds: state.meds,
+        meds: state.meds.list,
         med: state.medDetails
     }
 };

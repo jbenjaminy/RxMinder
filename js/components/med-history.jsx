@@ -29,7 +29,7 @@ class MedHistory extends React.Component {
         console.log('state:', this.props.state);
         let historyMessage = 'Your medication history:';
         
-        let historyFeed = this.props.history.map((med) => {
+        let historyFeed = this.props.meds.map((med) => {
             let time = moment(med.when_taken).format('MMM Do YYYY, h:mm A');
             return (
                 <li key={med.id}>
@@ -56,7 +56,7 @@ class MedHistory extends React.Component {
 const mapStateToProps = (state) => {
     return {
         state: state,
-        history: state.meds.history,
+        meds: state.meds.list,
         med: state.medDetails
     }
 };

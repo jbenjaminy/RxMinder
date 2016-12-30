@@ -6,7 +6,8 @@
         this.cancelEdit = this.cancelEdit.bind(this);
         fetchHistory
         clearMed
-                this.editMed = this.editMed.bind(this);
+        this.editMed = this.editMed.bind(this);
+        fetchMeds
 
 var fetch = require('isomorphic-fetch');
 

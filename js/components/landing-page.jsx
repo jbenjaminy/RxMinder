@@ -86,7 +86,7 @@ class LandingPage extends React.Component {
 const mapStateToProps = (state) => {
     return {
         state: state,
-        upcoming: state.meds.upcoming,
+        upcoming: state.meds.list,
         due: state.meds.due
         med: state.medDetails
     }
