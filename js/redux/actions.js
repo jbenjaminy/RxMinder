@@ -226,7 +226,8 @@ let deselectMed = () => {
             id: '',
             name: '',
             dosage: '',
-            numDoses: ''
+            numDoses: '',
+            frequency: '',
             nextDoseSecs: '',
             nextDoseDate: '',
             instructions: '',
@@ -257,14 +258,19 @@ let cancelEdit = () => {
 };
 
 // Update medication details in the database
-let submitEdit = () => {
+let submitEdit = (id, editProp, editVal) => {
     return (dispatch) => {
-        let url = '/medication';
+        let url = `/medication/update/${id}`;
         let request = {
+            method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
+            body: JSON.stringify({
+                editProp: editProp,
+                editVal: editVal
+            })
         };
         return fetch(url, request)
         .then((response) => {
@@ -279,13 +285,7 @@ let submitEdit = () => {
             return response.json();
         })
         .then((data) => {
-            return {
-                type: 'updateMedList',
-                data: {
-                    due: data.dueMeds,
-                    list: data.upcomingMeds
-                }
-            };
+            console.log(data.result);
         })
         .catch((error) => {
             console.error(error);

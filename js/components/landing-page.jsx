@@ -28,13 +28,13 @@ class LandingPage extends React.Component {
     }
 
     markDose(id, frequency) {
-        this.props.dispatch(actions.submitEdit(id, 'next_dose', frequency));
+        this.props.dispatch(actions.submitEdit(id, 'next_dose_secs', frequency));
         this.props.dispatch(actions.addHistory(id));
         this.props.dispatch(actions.fetchSchedule());
     }
 
     skipDose(id, frequency) {
-        this.props.dispatch(actions.submitEdit(id, 'next_dose', frequency));
+        this.props.dispatch(actions.submitEdit(id, 'next_dose_secs', frequency));
         this.props.dispatch(actions.fetchSchedule());
     }
 

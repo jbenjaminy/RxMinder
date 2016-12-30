@@ -76,10 +76,10 @@ app.get('/medication/:id', jsonParser, (request, response) => {
 	knex.select()
         .from('medications')
         .where({ id: id })
-        .returning(['id', 'name', 'dosage', 'num_doses', 'next_dose_secs', 'next_dose_date', 'instructions', 'precautions'])
+        .returning(['id', 'name', 'dosage', 'num_doses', 'frequency', 'next_dose_secs', 'next_dose_date', 'instructions', 'precautions'])
         .then((medication) => {
             return response.status(200).json({
-            	id: medication.id, name: medication.name, dosage: medication.dosage, numDoses: medication.num_doses, nextDoseSecs: medication.next_dose_secs, nextDoseDate: medication.next_dose_date, instructions: medication.instructions, precautions: medication.precautions
+            	id: medication.id, name: medication.name, dosage: medication.dosage, frequency: medication.frequency, numDoses: medication.num_doses, nextDoseSecs: medication.next_dose_secs, nextDoseDate: medication.next_dose_date, instructions: medication.instructions, precautions: medication.precautions
             });
         })
         .catch((error) => {
@@ -123,14 +123,14 @@ app.post('/medication/new', jsonParser, (request, response) => {
 	let time = new Date().getTime() / 1000;
 	let nextDoseSecs = firstDose + time;
 	let nextDoseDate = new Date(0);
-	nextDoseDate.setUTCSeconds(nextDose);
+	nextDoseDate.setUTCSeconds(nextDoseSecs);
 
 	knex.insert({ name: name, dosage: dosage, num_doses: numDoses, frequency: frequency, next_dose_secs: nextDoseSecs, next_dose_date: nextDoseDate, instructions: instructions, precautions: precautions })
-        .returning(['id', 'name', 'dosage', 'num_doses', 'next_dose_secs', 'next_dose_date', 'instructions', 'precautions'])
+        .returning(['id', 'name', 'dosage', 'num_doses', 'frequency', 'next_dose_secs', 'next_dose_date', 'instructions', 'precautions'])
         .into('medication')
         .then((data) => {
             return response.status(201).json({
-            	id: data[0].id, name: data[0].name, dosage: data[0].dosage, numDoses: data[0].num_doses, nextDoseSecs: data[0].next_dose_secs, nextDoseDate: data[0].next_dose_date, instructions: data[0].instructions, precautions: data[0].precautions
+            	id: data[0].id, name: data[0].name, dosage: data[0].dosage, numDoses: data[0].num_doses, frequency: data[0].frequency, nextDoseSecs: data[0].next_dose_secs, nextDoseDate: data[0].next_dose_date, instructions: data[0].instructions, precautions: data[0].precautions
             });
         })
         .catch((error) => {
@@ -184,10 +184,10 @@ app.put('/medication/update/:id', jsonParser, (request, response) => {
 	knex.('medication')
 		.update({column: value})
 		.where({id: id})
-		.returning(['id', 'name', 'dosage', 'num_doses', 'next_dose_secs', 'next_dose_date', 'instructions', 'precautions'])
+		.returning(['id', 'name', 'dosage', 'num_doses', 'frequency', 'next_dose_secs', 'next_dose_date', 'instructions', 'precautions'])
 		.then((medication) => {
 			return response.status(200).json({
-				id: medication.id, name: medication.name, dosage: medication.dosage, numDoses: medication.num_doses, nextDoseSecs: medication.next_dose_secs, nextDoseDate: medication.next_dose_date, instructions: medication.instructions, precautions: medication.precautions
+                result: 'Medication edited successfully.'
 			})
 		})
 		.catch((error) => {

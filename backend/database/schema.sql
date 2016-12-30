@@ -2,10 +2,11 @@ create table if not exists medication (
 	id serial primary key,
 	name text not null unique,
 	dosage integer not null,
-	num_doses integer not null,
 	-- represents # mg of medication
-	frequency integer not null,
+	num_doses integer not null,
 	-- represents # times daily
+	frequency integer not null,
+	-- represents seconds in between dose
 	next_dose_secs integer not null,
 	-- UTC seconds
 	next_dose_date timestamp not null,
