@@ -3,11 +3,6 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import actions from '../redux/actions'
 
-// import LandingPage from './landing-page';
-// import AddMed from './add-med';
-// import MedsPage from './meds-page';
-// import DoseHistory from './dose-history';
-
 class NavBar extends React.Component {
 	constructor() {
         super();

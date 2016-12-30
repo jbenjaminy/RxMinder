@@ -124,6 +124,7 @@ app.post('/medication/new', jsonParser, (request, response) => {
 	let nextDoseSecs = firstDose + time;
 	let nextDoseDate = new Date(0);
 	nextDoseDate.setUTCSeconds(nextDoseSecs);
+    nextDoseSecs = nextDoseSecs.toString();
 
 	knex.insert({ name: name, dosage: dosage, num_doses: numDoses, frequency: frequency, next_dose_secs: nextDoseSecs, next_dose_date: nextDoseDate, instructions: instructions, precautions: precautions })
         .returning(['id', 'name', 'dosage', 'num_doses', 'frequency', 'next_dose_secs', 'next_dose_date', 'instructions', 'precautions'])

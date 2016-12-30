@@ -29,7 +29,7 @@ class AddMed extends React.Component {
     				<li><h3>How many times will you take the medication daily?</h3><input type='text' placeholder='Enter the number of daily doses' ref='numDosesVal' required /></li>
     				<li><h3>When do you plan to take the first dose?</h3><input type='text' placeholder='Enter the number of hours from now' ref='firstDoseVal' required /></li>
     				<li><h3>Are there any special instructions?</h3><input type='text' placeholder='Optional' ref='instructionsVal' /></li>
-    				<li><h3>Are there any warnings on the label about side effects or interactions with other drugs?</h3><input type='text' placeholder='optional' ref='precautionsVal' /></li>
+    				<li><h3>Are there any warnings about side effects or interactions with other drugs?</h3><input type='text' placeholder='Optional' ref='precautionsVal' /></li>
     				<button type='button' onClick={this.addMed}>Submit</button>
     			</ul>
     		</div>

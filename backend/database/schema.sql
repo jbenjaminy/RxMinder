@@ -7,7 +7,7 @@ create table if not exists medication (
 	-- represents # times daily
 	frequency integer not null,
 	-- represents seconds in between dose
-	next_dose_secs integer not null,
+	next_dose_secs text not null,
 	-- UTC seconds
 	next_dose_date timestamp not null,
 	-- timestamp

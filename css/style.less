@@ -15,17 +15,34 @@ body {
 
 		input {
 			font-family: 'Inconsolata';
-			width: 200px;
+			width: 300px;
 			margin-bottom: 20px;
-			font-size: 13px;
+			font-size: 15px;
 			border-radius: 3px;
 			color: @ltGrey;
 			border: 1px solid @ltGrey;
 			text-align: center;
 		}
+
 		input:required {
             border: 1px solid @ltGrey;
             box-shadow: none;
+        }
+
+        button {
+        	font-family: 'Inconsolata';
+        	font-size: 15px;
+        	border-radius: 3px;
+        	padding: 3px;
+        	letter-spacing: 2px;
+        	border-color: @dkGrey;
+			background-color: @dkGrey;
+			color: @white;
+        }
+
+        button:hover {
+			cursor: pointer;
+			background-color: @ltBlue;
         }
 
 		a {
@@ -74,6 +91,10 @@ body {
 			width: 50%;
 			margin: 0 auto;
 			text-align: center;
+
+			h3 {
+				text-align: left;
+			}
 
 		}
 	}
