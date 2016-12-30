@@ -40,7 +40,7 @@ let fetchSchedule = () => {
 // Get a complete list of all medications
 let fetchMeds = () => {
     return (dispatch) => {
-        let url = '/medication';
+        let url = '/medication/all';
         let request = {
             headers: {
                 'Accept': 'application/json',
@@ -63,8 +63,7 @@ let fetchMeds = () => {
             return {
                 type: 'updateMedList',
                 data: {
-                    due: data.dueMeds,
-                    list: data.upcomingMeds
+                    list: data.allMeds
                 }
             };
         })
