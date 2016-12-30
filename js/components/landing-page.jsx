@@ -8,11 +8,21 @@ class LandingPage extends React.Component {
 
     constructor() {
         super();
-        // this.postQuestion = this.postQuestion.bind(this);
+        this.selectMed = this.selectMed.bind(this);
     }
 
     componentDidMount() {
         this.props.dispatch(actions.fetchMedsSched());
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.med.name !== '') {
+            browserHistory.push(`/medication/${nextProps.med.name}`);
+        }
+    }
+
+    selectMed(medId) {
+        this.props.dispatch(actions.selectMed(medId));
     }
 
     render() {
@@ -24,7 +34,7 @@ class LandingPage extends React.Component {
             let time = moment(due.nextDose).format('MMM Do YYYY, h:mm A');
             return (
                 <li key={med.id}>
-                    <p className='name'>{med.name}</p>
+                    <a onClick={this.selectMed.bind(this, med.id)}><p className='name'>{med.name}</p></a>
                     <p className='dosage'>{med.dosage}</p>
                     <p className='date'>{time}</p>
                 </li>
@@ -35,7 +45,7 @@ class LandingPage extends React.Component {
             let time = moment(upcoming.nextDose).format('MMM Do YYYY, h:mm A');
             return (
                 <li key={med.id}>
-                    <p className='name'>{med.name}</p>
+                    <a onClick={this.selectMed.bind(this, med.id)}><p className='name'>{med.name}</p></a>
                     <p className='dosage'>{med.dosage}</p>
                     <p className='date'>{time}</p>
                 </li>
@@ -65,6 +75,7 @@ const mapStateToProps = (state) => {
         state: state,
         upcoming: state.meds.upcoming,
         due: state.meds.due
+        med: state.medDetails
     }
 };
 

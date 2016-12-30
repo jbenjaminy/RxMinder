@@ -1,5 +1,6 @@
 let initialState = {
 	meds: {
+    all: [],
 		upcoming: [],
 		due: [],
 		history: [],
