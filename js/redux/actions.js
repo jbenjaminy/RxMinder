@@ -294,10 +294,11 @@ let submitEdit = (id, editProp, editVal) => {
 };
 
 // Delete medication from the database
-let deleteMed = () => {
+let deleteMed = (id) => {
     return (dispatch) => {
-        let url = '/medication';
+        let url = `/medication/delete/${id}`;
         let request = {
+            method: 'DELETE',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -317,11 +318,7 @@ let deleteMed = () => {
         })
         .then((data) => {
             return {
-                type: 'updateMedList',
-                data: {
-                    due: data.dueMeds,
-                    list: data.upcomingMeds
-                }
+                console.log(data.result);
             };
         })
         .catch((error) => {

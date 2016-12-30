@@ -198,7 +198,7 @@ app.put('/medication/update/:id', jsonParser, (request, response) => {
 });
 
 // Delete a medication from the medication table
-app.delete('/medication/:id', jsonParser, (request, response) => {
+app.delete('/medication/delete/:id', jsonParser, (request, response) => {
 	let id = request.params.id;
     const promise = deleteHistory(id);
     promise.then((id) => {
