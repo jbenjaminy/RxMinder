@@ -123,6 +123,43 @@ app.post('/medication/new', jsonParser, (request, response) => {
         });
 });
 
+// Add a new row to the dose_history table
+app.post('/history/new/:id', jsonParser, (request, response) => {
+	let id = request.params.id;
+	const promise = selectMed(id);
+    promise.then((data) => {
+		knex.insert({ med_id: data.medId, med_name: data.medName, med_dosage: data.medDosage
+        	.into('dose_history')
+        	.then((data) => {
+            return response.status(201).json({
+            	result: 'Dose added to history successfully.'
+	        })
+	        .catch((error) => {
+	            response.status(500).json({
+	            	error: error
+	            });
+	        });
+	});
+    let selectMed = (id) => {
+        return new Promise((resolve, reject) => {
+			knex.select()
+				.from('medication')
+				.where({ id: id })
+				.returning(['id', 'name', 'dosage'])
+				.then((medication) => {
+					resolve({
+						'medId': id, 'medName': name, 'medDosage': dosage
+					});
+				})
+				.catch((error) => {
+					reject({
+						error: error
+					});
+				});
+		});
+	}
+});
+
 // Edit the details of an existing medication
 app.put('/medication/update/:id', jsonParser, (request, response) => {
 	let column = request.body.editProp;
@@ -157,7 +194,9 @@ app.delete('/medication/:id', jsonParser, (request, response) => {
 					resolve(id);
 				})
 				.catch((error) => {
-					reject(error);
+					reject({
+						error: error
+					});
 				});
 		});
 	}
