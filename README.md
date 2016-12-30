@@ -15,7 +15,7 @@
 
  * A live version of the app can be viewed at [rxminder.jbenjaminy.com](https://rxminder.jbenjaminy.com).
 
-![RxMinder Screenshot]( "RxMinder")
+![RxMinder Screenshot](http://i.imgur.com/y3ePzfH.png "RxMinder Landing Page")
 
 ## Requirements & Local Setup (Mac users) ##
 
