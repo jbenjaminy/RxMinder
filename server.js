@@ -26,7 +26,7 @@ app.use((request, response, next) => {
 
 /*---------- DATABASE QUERIES ----------*/
 
-// Select all medication entries from medication table
+// Select all medication entries from medication table and separate out the ones that are due to be taken
 app.get('/medication', jsonParser, (request, response) => {
 	let time = new Date().getTime() / 1000;
 	let dueMeds = [];
@@ -49,6 +49,23 @@ app.get('/medication', jsonParser, (request, response) => {
         .catch((error) => {
             response.status(500).json({
             	error: error
+            });
+        });
+)};
+
+// Select all medication entries from medication table
+app.get('/medication/all', jsonParser, (request, response) => {
+    knex.select()
+        .from('medication')
+        .orderBy('name')
+        .then((data) => {
+            return response.status(200).json({
+                allMeds: data
+            });
+        })
+        .catch((error) => {
+            response.status(500).json({
+                error: error
             });
         });
 )};
