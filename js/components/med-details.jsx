@@ -14,7 +14,7 @@ class MedDetails extends React.Component {
     }
 
     editMed(property) {
-    	this.props.dispatch(actions.editMed(this.props.med.id, property));
+    	this.props.dispatch(actions.editMed(property));
     }
 
     deleteMed() {
