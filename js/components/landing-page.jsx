@@ -69,7 +69,8 @@ class LandingPage extends React.Component {
 
         if (dueFeed.length === 0) {
             dueMessage = 'You are currently caught up on all medication.';
-        } else if (upcomingFeed.length === 0 && dueFeed.length === 0) {
+        } 
+        if (upcomingFeed.length === 0 && dueFeed.length === 0) {
             dueMessage = 'You are not currently scheduled to take any medication.';
             upcomingMessage = '';
         }

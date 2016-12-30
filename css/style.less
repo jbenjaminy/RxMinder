@@ -1,20 +1,15 @@
-@import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700|News+Cycle:400,700);
+@import url(https://fonts.googleapis.com/css?family=Inconsolata:700|Merriweather);
 
 @white: #ffffff;
 @dkGrey: darken(#6C6C6C, 10%);
 @ltBlue: lighten(#3399ff, 30%);
 @dkBlue: darken(#3399ff, 20%);
 @ltGrey: lighten(#6C6C6C, 30%);
-
 body {
 	margin: 0;
-	height: 100%;
-	width: 100%;
+	padding: 0;
 
 	.app {
-		height: 100%;
-		width: 90%;
-		margin: 0 auto;
 		font-family: 'Inconsolata';
 		color: @dkGrey;
 
@@ -40,11 +35,10 @@ body {
 		}
 
 		.nav-bar {
-			height: 150px;
-			width: 100%;
+			height: 200px;
+			width: 95%;
+			margin: 0 auto;
 			text-align: center;
-			position: fixed;
-			z-index: 100;
 
 			ul {
 				height: 40px;
@@ -58,6 +52,7 @@ body {
 					float: right;
 					margin-top: 16px;		
 				}
+			}
 
 			h1 {
 				font-size: 100px;
@@ -68,28 +63,24 @@ body {
 			}
 		}
 
-		// .landing {
-		// 	width: 50%;
-		// 	margin: 0 auto;
+		.landing-page {
+			width: 50%;
+			margin: 0 auto;
+			text-align: center;
 
-		// 	h3 {
-		// 		text-align: center;
-		// 		margin-left: -135px;
-		// 	}
+			// form {
+			// 	text-align: center;
 
-		// 	form {
-		// 		text-align: center;
+			// 	input {
+			// 		width: 200px;
+			// 		margin-bottom: 20px;
+			// 	}
+			// }
 
-		// 		input {
-		// 			width: 200px;
-		// 			margin-bottom: 20px;
-		// 		}
-		// 	}
-
-		// 	.reg-link {
-		// 		text-align: center;
-		// 		margin-top: 0;
-		// 	}
+			.reg-link {
+				text-align: center;
+				margin-top: 0;
+			}
 		}
 	}
 }
