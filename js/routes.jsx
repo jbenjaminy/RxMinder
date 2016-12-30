@@ -11,7 +11,7 @@ let App = (props) => {
     return (
         <div className='app'>
             <NavBar />
-            <div>
+            <div className='main'>
                 {props.children}
             </div>
         </div>

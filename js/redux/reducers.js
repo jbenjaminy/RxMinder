@@ -35,7 +35,7 @@ function reducer(state=initialState, action) {
             let name = action.data.name || state.medDetails.name;
             let dosage = action.data.dosage || state.medDetails.dosage;
             let numDoses = action.data.numDoses || state.medDetails.numDoses;
-            let frequencey = action.data.frequency || state.medDetails.frequency;
+            let frequency = action.data.frequency || state.medDetails.frequency;
             let nextDoseSecs = action.data.nextDoseSecs || state.medDetails.nextDoseSecs;
             let nextDoseDate = action.data.nextDoseDate || state.medDetails.nextDoseDate;
             let instructions = action.data.instructions || state.medDetails.instructions;
@@ -48,7 +48,6 @@ function reducer(state=initialState, action) {
                     dosage: dosage,
                     numDoses: numDoses,
                     frequency: frequency,
-                    appliedFilters: appliedFilters,
                     nextDoseSecs: nextDoseSecs,
                     nextDoseDate: nextDoseDate,
                     instructions: instructions,

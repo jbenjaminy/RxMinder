@@ -13,16 +13,20 @@ body {
 		font-family: 'Inconsolata';
 		color: @dkGrey;
 
-		// input {
-		// 	font-family: 'Inconsolata';
-		// 	width: 200px;
-		// 	margin-bottom: 20px;
-		// 	font-size: 13px;
-		// 	border-radius: 3px;
-		// 	color: @ltGrey;
-		// 	border: 1px solid @ltGrey;
-		// 	text-align: center;
-		// }
+		input {
+			font-family: 'Inconsolata';
+			width: 200px;
+			margin-bottom: 20px;
+			font-size: 13px;
+			border-radius: 3px;
+			color: @ltGrey;
+			border: 1px solid @ltGrey;
+			text-align: center;
+		}
+		input:required {
+            border: 1px solid @ltGrey;
+            box-shadow: none;
+        }
 
 		a {
 			color: inherit;
@@ -31,7 +35,11 @@ body {
 
 		a:hover {
 			color: @ltBlue;
-			
+			cursor: pointer;
+		}
+
+		li {
+			list-style-type: none;
 		}
 
 		.nav-bar {
@@ -47,7 +55,6 @@ body {
 				li {
 					margin-left: 30px;
 					text-decoration: none;
-					list-style-type: none;
 					display: inline-block;
 					float: right;
 					margin-top: 16px;		
@@ -63,24 +70,11 @@ body {
 			}
 		}
 
-		.landing-page {
+		.main {
 			width: 50%;
 			margin: 0 auto;
 			text-align: center;
 
-			// form {
-			// 	text-align: center;
-
-			// 	input {
-			// 		width: 200px;
-			// 		margin-bottom: 20px;
-			// 	}
-			// }
-
-			.reg-link {
-				text-align: center;
-				margin-top: 0;
-			}
 		}
 	}
 }
