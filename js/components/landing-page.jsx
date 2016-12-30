@@ -41,7 +41,7 @@ class LandingPage extends React.Component {
     render() {
         console.log('state:', this.props.state);
         let dueMessage = 'Take the following medication now!';
-        let upcomingFeed = 'You are scheduled to take the following medication at a future time:';
+        let upcomingMessage = 'You are scheduled to take the following medication at a future time:';
         
         let dueFeed = this.props.due.map((med) => {
             let time = moment(due.nextDose).format('MMM Do YYYY, h:mm A');
@@ -89,7 +89,7 @@ const mapStateToProps = (state) => {
     return {
         state: state,
         upcoming: state.meds.list,
-        due: state.meds.due
+        due: state.meds.due,
         med: state.medDetails
     }
 };

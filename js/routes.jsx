@@ -5,7 +5,7 @@ import NavBar from './components/nav-bar';
 import MedsPage from './components/meds-page';
 import AddMed from './components/add-med';
 import MedDetails from './components/med-details';
-import MedHistory from './components/MedHistory';
+import MedHistory from './components/med-history';
 
 let App = (props) => {
     return (

@@ -266,7 +266,7 @@ let submitEdit = (id, editProp, editVal) => {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            }
+            },
             body: JSON.stringify({
                 editProp: editProp,
                 editVal: editVal
@@ -317,9 +317,7 @@ let deleteMed = (id) => {
             return response.json();
         })
         .then((data) => {
-            return {
-                console.log(data.result);
-            };
+            console.log(data.result);
         })
         .catch((error) => {
             console.error(error);
