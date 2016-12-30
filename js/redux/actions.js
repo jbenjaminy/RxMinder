@@ -153,10 +153,11 @@ let addMed = (name, dosage, numDoses, firstDose, instructions, precautions) => {
 };
 
 // Add a new entry to the medication history
-let addHistory = () => {
+let addHistory = (id) => {
     return (dispatch) => {
-        let url = '/medication';
+        let url = `/history/new/${id}`;
         let request = {
+            method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -175,13 +176,7 @@ let addHistory = () => {
             return response.json();
         })
         .then((data) => {
-            return {
-                type: 'updateMedList',
-                data: {
-                    due: data.dueMeds,
-                    list: data.upcomingMeds
-                }
-            };
+            console.log(data.result)
         })
         .catch((error) => {
             console.error(error);
