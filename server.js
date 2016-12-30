@@ -76,7 +76,7 @@ app.get('/medication/all', jsonParser, (request, response) => {
 app.get('/medication/:id', jsonParser, (request, response) => {
 	let id = request.params.id;
 	knex.select()
-        .from('medications')
+        .from('medication')
         .where({ id: id })
         .returning(['id', 'name', 'dosage', 'num_doses', 'frequency', 'next_dose_secs', 'next_dose_date', 'instructions', 'precautions'])
         .then((medication) => {
@@ -94,7 +94,7 @@ app.get('/medication/:id', jsonParser, (request, response) => {
 // Select all past doses from dose_history table
 app.get('/medication/history', jsonParser, (request, response) => {
 	knex.select()
-        .from('doseHistory')
+        .from('dose_history')
         .orderBy('next_dose_secs', 'desc')
         .returning(['id', 'med_name', 'med_id', 'med_dosage', 'when_taken'])
         .then((data) => {
