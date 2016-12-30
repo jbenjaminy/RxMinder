@@ -13,6 +13,5 @@ create table if not exists medications (
 create table if not exists med_history (
 	id serial primary key,
 	med_id integer not null references medications,
-	dosage integer not null,
 	what_time timestamp not null default now()
 );

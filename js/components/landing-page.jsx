@@ -9,6 +9,8 @@ class LandingPage extends React.Component {
     constructor() {
         super();
         this.selectMed = this.selectMed.bind(this);
+        this.markDose = this.markDose.bind(this);
+        this.skipDose = this.skipDose.bind(this);
     }
 
     componentDidMount() {
@@ -25,6 +27,15 @@ class LandingPage extends React.Component {
         this.props.dispatch(actions.selectMed(medId));
     }
 
+    markDose(id, frequency) {
+        this.props.dispatch(actions.submitEdit(id, 'next_dose', frequency));
+        this.props.dispatch(actions.addHistory(id));
+    }
+
+    skipDose(id, frequency) {
+        this.props.dispatch(actions.submitEdit(id, 'next_dose', frequency));
+    }
+
     render() {
         console.log('state:', this.props.state);
         let dueMessage = 'Take the following medication now!';
@@ -37,6 +48,8 @@ class LandingPage extends React.Component {
                     <a onClick={this.selectMed.bind(this, med.id)}><p className='name'>{med.name}</p></a>
                     <p className='dosage'>{med.dosage}</p>
                     <p className='date'>{time}</p>
+                    <button type='button' onClick={this.markDose.bind(this, med.id, med.frequency)}>Mark Dose Taken</button>
+                    <button type='button' onClick={this.skipDose.bind(this, med.id, med.frequency)}>Skip Dose</button>
                 </li>
             )
         });

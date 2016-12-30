@@ -41,7 +41,7 @@ class MedDetails extends React.Component {
     		return (
     			<div className='med-details'>
     				<h3>Enter new value for {this.props.med.edit}:</h3>
-    				<input type='text' ref='editVal'/>
+    				<input type='text' ref='editVal' required/>
     				<button type='button' onClick={this.submitEdit()}>Submit</button>
     				<button type='button' onClick={this.cancelEdit()}>Cancel</button>
     			</div>
