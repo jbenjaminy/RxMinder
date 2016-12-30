@@ -174,6 +174,7 @@ let addHistory = (id) => {
 
 // Get the details for a particular medication
 let selectMed = (id) => {
+    console.log('id', id);
     return (dispatch) => {
         let url = `/medication/${id}`;
         let request = {
@@ -192,13 +193,14 @@ let selectMed = (id) => {
             return response.json();
         })
         .then((data) => {
+            console.log('data', data);
             return dispatch ({
                 type: 'updateMedDetails',
                 data: data
             });
         })
         .catch((error) => {
-            console.error(error);
+            console.log(error);
         });
     }
 };

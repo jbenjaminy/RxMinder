@@ -14,7 +14,7 @@ class MedDetails extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.med.name === '') {
+        if (nextProps.medDetails.name !== '') {
             browserHistory.push('/medication');
         }
     }
@@ -23,26 +23,26 @@ class MedDetails extends React.Component {
     	this.props.dispatch(actions.editMed(property));
     }
 
-    deleteMed() {
-    	this.props.dispatch(actions.deleteMed(this.props.med.id));
+    deleteMed(id) {
+    	this.props.dispatch(actions.deleteMed(id));
         this.props.dispatch(actions.deselectMed());
     }
 
     submitEdit(event) {
     	event.preventDefault();
-    	let editProp = this.props.med.edit;
+    	let editProp = this.props.medDetails.edit;
         let editVal = this.refs.editVal.value;
-        let id = this.props.med.id
-    	if (this.props.med.edit === 'hours to next dose') {
+        let id = this.props.medDetails.id
+    	if (this.props.medDetails.edit === 'hours to next dose') {
     		editProp = 'next_dose_secs'
             editVal = editVal * 3600;
-            editVal = editVal + parseInt(this.props.med.nextDoseSecs);
+            editVal = editVal + parseInt(this.props.medDetails.nextDoseSecs);
     	}
-        if (this.props.med.edit === 'doses per day') {
+        if (this.props.medDetails.edit === 'doses per day') {
             editProp = 'num_doses'
             let frequency = Math.floor(24 / numDoses);
             frequecy = 3600 * frequency;
-            let nextDoseSecs = parseInt(this.props.nextDoseSecs) + (frequency - this.props.frequency);
+            let nextDoseSecs = parseInt(this.props.medDetails.nextDoseSecs) + (frequency - this.props.medDetails.frequency);
             let nextDoseDate = new Date(0);
             nextDoseSecs = nextDoseSecs.toString();
             nextDoseDate.setUTCSeconds(nextDoseSecs);
@@ -60,11 +60,11 @@ class MedDetails extends React.Component {
 
     render() {
     	console.log('state:', this.props.state);
-    	let time = moment(med.nextDoseDate).format('MMM Do YYYY, h:mm A');
-    	if (this.props.med.edit !== '') {
+    	let time = moment(this.props.medDetails.nextDoseDate).format('MMM Do YYYY, h:mm A');
+    	if (this.props.medDetails.edit !== '') {
     		return (
     			<div className='med-details'>
-    				<h3>Enter new value for {this.props.med.edit}:</h3>
+    				<h3>Enter new value for {this.props.medDetails.edit}:</h3>
     				<input type='text' ref='editVal' required/>
     				<button type='button' onClick={this.submitEdit()}>Submit</button>
     				<button type='button' onClick={this.cancelEdit()}>Cancel</button>
@@ -74,14 +74,14 @@ class MedDetails extends React.Component {
     	return (
     		<div className='med-details'>
     			<ul>
-    				<li><h3>name: {this.props.med.name}</h3><button type="button" onClick={this.editMed.bind(this, 'name')}>Edit</button></li>
-    				<li><h3>dosage: {this.props.med.dosage} mg</h3><button type="button" onClick={this.editMed.bind(this, 'dosage')}>Edit</button></li>
-    				<li><h3>doses per day: {this.props.med.numDoses}x daily</h3><button type="button" onClick={this.editMed.bind(this, 'doses per day')}>Edit</button></li>
-    				<li><h3>next dose: {time}</h3><button type="button" onClick={this.editMed.bind(this, 'hours to next dose')}>Edit</button></li>
-    				<li><h3>instructions: {this.props.med.instructions}</h3><button type="button" onClick={this.editMed.bind(this, 'instructions')}>Edit</button></li>
-    				<li><h3>precautions: {this.props.med.precautions}</h3><button type="button" onClick={this.editMed.bind(this, 'precautions')}>Edit</button></li>
+    				<li><button type="button" onClick={this.editMed.bind(this, 'name')}>Edit</button><h3>name: <span className='titles'>{this.props.medDetails.name}</span></h3></li>
+    				<li><button type="button" onClick={this.editMed.bind(this, 'dosage')}>Edit</button><h3>dosage: <span className='titles'>{this.props.medDetails.dosage} mg</span></h3></li>
+    				<li><button type="button" onClick={this.editMed.bind(this, 'doses per day')}>Edit</button><h3>doses per day: <span className='titles'>{this.props.medDetails.numDoses}x daily</span></h3></li>
+    				<li><button type="button" onClick={this.editMed.bind(this, 'hours to next dose')}>Edit</button><h3>next dose: <span className='titles'>{time}</span></h3></li>
+    				<li><button type="button" onClick={this.editMed.bind(this, 'instructions')}>Edit</button><h3>instructions: <span className='titles'>{this.props.medDetails.instructions}</span></h3></li>
+    				<li><button type="button" onClick={this.editMed.bind(this, 'precautions')}>Edit</button><h3>precautions: <span className='titles'>{this.props.medDetails.precautions}</span></h3></li>
     			</ul>
-    			<button type="button" onClick={this.deleteMed()}>Delete</button>
+    			<button type="button" onClick={this.deleteMed.bind(this, this.props.medDetails.id)}>Delete</button>
     		</div>
     	);
     }
@@ -90,7 +90,7 @@ class MedDetails extends React.Component {
 const mapStateToProps = (state) => {
     return {
         state: state,
-        med: state.medDetails
+        medDetails: state.medDetails
     }
 };
 

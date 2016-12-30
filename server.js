@@ -75,6 +75,7 @@ app.get('/medication/all', jsonParser, (request, response) => {
 // Select the details of a specific medication by id
 app.get('/medication/:id', jsonParser, (request, response) => {
 	let id = request.params.id;
+    console.log('id', id);
 	knex.select()
         .from('medication')
         .where({ id: id })
@@ -206,9 +207,9 @@ app.delete('/medication/delete/:id', jsonParser, (request, response) => {
 	let id = request.params.id;
     const promise = deleteHistory(id);
     promise.then((id) => {
-    	knex.delete()
-			.from('medication')
-			.where({ id: id })
+    	knex('medication')
+			.where('id', id)
+            .del()
 			.then((data) => {
 				return response.status(200).json({result: 'Medication deleted successfully.'});
 			})
@@ -218,23 +219,23 @@ app.delete('/medication/delete/:id', jsonParser, (request, response) => {
             	});
 			});
     });
-
-    let deleteHistory = (id) => {
-        return new Promise((resolve, reject) => {
-			knex.delete()
-				.from('dose_history')
-				.where({ med_id: id })
-				.then((data) => {
-					resolve(id);
-				})
-				.catch((error) => {
-					reject({
-						error: error
-					});
-				});
-		});
-	}
 });
+
+let deleteHistory = (id) => {
+    return new Promise((resolve, reject) => {
+        knex('dose_history')
+            .where('med_id', id)
+            .del()
+            .then((data) => {
+                resolve(id);
+            })
+            .catch((error) => {
+                reject({
+                    error: error
+                });
+            });
+    });
+}
 
 /*---------- RUN SERVER FUNCTION ----------*/
 

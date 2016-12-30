@@ -18,12 +18,13 @@ class LandingPage extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.med.name !== '') {
-            browserHistory.push(`/medication/${nextProps.med.name}`);
+        if (nextProps.medDetails.name !== '') {
+            browserHistory.push(`/medication/${nextProps.medDetails.name}`);
         }
     }
 
     selectMed(medId) {
+        console.log('medId', medId);
         this.props.dispatch(actions.selectMed(medId));
     }
 
@@ -102,7 +103,7 @@ const mapStateToProps = (state) => {
         state: state,
         upcoming: state.meds.list,
         due: state.meds.due,
-        med: state.medDetails
+        medDetails: state.medDetails
     }
 };
 
