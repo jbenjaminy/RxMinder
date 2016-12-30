@@ -7,7 +7,8 @@ import routes from './routes';
 document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(
         <Provider store={store}>
-          {routes}
+        	{routes}
         </Provider>,
-        document.getElementById('app'));
+        document.getElementById('app')
+    );
 });

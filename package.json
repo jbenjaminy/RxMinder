@@ -1,60 +1,60 @@
 {
-  "name": "rx-minder",
-  "version": "1.0.0",
-  "description": "A simple solution to ensure your medication is taken on time, every time.",
-  "engines": {
-    "node": "6.4.0"
-  },
-  "main": "server.js",
-  "scripts": {
-    "test": "mocha --compilers js:babel-register test/**/*.js*",
-    "start": "node server.js",
-    "mkdir": "mkdir -p build",
-    "build": "npm run clean && npm run mkdir && npm run build:html && npm run build:js && npm run build:css",
-    "watch": "npm run mkdir && npm run watch:html & npm run watch:js & npm run watch:css",
-    "clean": "rm -rf build",
-    "build:html": "npm run clean:html && cp index.html build/",
-    "watch:html": "npm run build:html && chokidar index.html -c 'npm run build:html'",
-    "clean:html": "rm -f build/index.html",
-    "build:css": "npm run clean:css && lessc --source-map css/style.less build/$npm_package_name.$npm_package_version.css",
-    "watch:css": "npm run build:css && chokidar 'css/**/*.less' -c 'npm run build:css'",
-    "clean:css": "rm -f build/$npm_package_name.$npm_package_version.css build/$npm_package_name.$npm_package_version.css.map",
-    "build:js": "npm run clean:js && webpack",
-    "watch:js": "npm run build:js && webpack --watch",
-    "clean:js": "rm -f build/$npm_package_name.$npm_package_version.js build/$npm_package_name.$npm_package_version.js.map",
-    "heroku-postbuild": "npm run build"
-  },
-  "author": "Ben Young",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jbenjaminy/RxMinder"
-  },
-  "bugs": {
-    "url": "https://github.com/jbenjaminy/RxMinder/issues"
-  },
-  "homepage": "http://rxminder.jbenjaminy.com",
-  "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "isomorphic-fetch": "^2.2.1",
-    "knex": "^0.11.9",
-    "pg": "^6.0.3",
-    "moment": "^2.15.1",
-    "react": "^15.2.1",
-    "react-dom": "^15.2.1",
-    "react-redux": "^4.4.5",
-    "react-router": "^2.6.1",
-    "redux": "^3.5.2",
-    "redux-thunk": "^2.1.0"
-  },
-  "devDependencies": {
-    "babel-core": "^6.11.4",
-    "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.11.1",
-    "chokidar-cli": "^1.2.0",
-    "less": "^2.7.1",
-    "webpack": "^1.13.1"
-  }
+    "name": "rx-minder",
+    "version": "1.0.0",
+    "description": "A simple solution to ensure your medication is taken on time, every time.",
+    "engines": {
+        "node": "6.4.0"
+    },
+    "main": "server.js",
+    "scripts": {
+        "test": "mocha --compilers js:babel-register test/**/*.js*",
+        "start": "node server.js",
+        "mkdir": "mkdir -p build",
+        "build": "npm run clean && npm run mkdir && npm run build:html && npm run build:js && npm run build:css",
+        "watch": "npm run mkdir && npm run watch:html & npm run watch:js & npm run watch:css",
+        "clean": "rm -rf build",
+        "build:html": "npm run clean:html && cp index.html build/",
+        "watch:html": "npm run build:html && chokidar index.html -c 'npm run build:html'",
+        "clean:html": "rm -f build/index.html",
+        "build:css": "npm run clean:css && lessc --source-map css/style.less build/$npm_package_name.$npm_package_version.css",
+        "watch:css": "npm run build:css && chokidar 'css/**/*.less' -c 'npm run build:css'",
+        "clean:css": "rm -f build/$npm_package_name.$npm_package_version.css build/$npm_package_name.$npm_package_version.css.map",
+        "build:js": "npm run clean:js && webpack",
+        "watch:js": "npm run build:js && webpack --watch",
+        "clean:js": "rm -f build/$npm_package_name.$npm_package_version.js build/$npm_package_name.$npm_package_version.js.map",
+        "heroku-postbuild": "npm run build"
+    },
+    "author": "Ben Young",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jbenjaminy/RxMinder"
+    },
+    "bugs": {
+        "url": "https://github.com/jbenjaminy/RxMinder/issues"
+    },
+    "homepage": "http://rxminder.jbenjaminy.com",
+    "dependencies": {
+        "body-parser": "^1.15.2",
+        "express": "^4.14.0",
+        "isomorphic-fetch": "^2.2.1",
+        "knex": "^0.11.9",
+        "pg": "^6.0.3",
+        "moment": "^2.15.1",
+        "react": "^15.2.1",
+        "react-dom": "^15.2.1",
+        "react-redux": "^4.4.5",
+        "react-router": "^2.6.1",
+        "redux": "^3.5.2",
+        "redux-thunk": "^2.1.0"
+    },
+    "devDependencies": {
+        "babel-core": "^6.11.4",
+        "babel-loader": "^6.2.4",
+        "babel-preset-es2015": "^6.9.0",
+        "babel-preset-react": "^6.11.1",
+        "chokidar-cli": "^1.2.0",
+        "less": "^2.7.1",
+        "webpack": "^1.13.1"
+    }
 }
