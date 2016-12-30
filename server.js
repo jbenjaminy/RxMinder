@@ -63,20 +63,16 @@ app.post('/medication/new', jsonParser, (request, response) => {
 	frequecy = 3600 * frequency;
 	firstDose = 3600 * firstDose;
 	let time = new Date().getTime() / 1000;
-	let nextDose = firstDose + time;
-	} else if (hours.length === 1) {
-		hours = `0${hours}`
-	}
-	let mins = time.getMinutes();
-	let secs = time.getSeconds();
-	nextDose = `${hours}:${mins}:${secs}`
+	let nextDoseSecs = firstDose + time;
+	let nextDoseDate = new Date(0);
+	nextDoseDate.setUTCSeconds(nextDose);
 
-	knex.insert({ name: name, dosage: dosage, num_doses: numDoses, frequency: frequency, next_dose: nextDose, instructions: instrucstions, precautions: precautions })
-        .returning(['name', 'dosage', 'num_doses', 'next_dose', 'instructions', 'precautions'])
+	knex.insert({ name: name, dosage: dosage, num_doses: numDoses, frequency: frequency, next_dose_secs: nextDoseSecs, next_dose_date: nextDoseDate, instructions: instrucstions, precautions: precautions })
+        .returning(['name', 'dosage', 'num_doses', 'next_dose_secs', 'next_dose_date', 'instructions', 'precautions'])
         .into('medication')
         .then((data) => {
             return response.status(201).json({
-            	name: data[0].name, dosage: data[0].dosage, numDoses: data[0].num_doses, nextDose: data[0].next_dose, instructions: data[0].instrucstion, precautions: data[0].precautions
+            	name: data[0].name, dosage: data[0].dosage, numDoses: data[0].num_doses, nextDoseSecs: data[0].next_dose_secs, nextDoseDate: data[0].next_dose_date, instructions: data[0].instrucstion, precautions: data[0].precautions
             });
         })
         .catch((error) => {

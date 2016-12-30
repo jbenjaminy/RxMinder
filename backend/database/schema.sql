@@ -6,8 +6,10 @@ create table if not exists medication (
 	-- represents # mg of medication
 	frequency integer not null,
 	-- represents # times daily
-	next_dose time not null,
-	-- format hh:mm:ss
+	next_dose_secs integer not null,
+	-- UTC seconds
+	next_dose_date timestamp not null,
+	-- timestamp
 	instructions text,
 	precautions text
 );
