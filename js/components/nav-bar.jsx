@@ -13,7 +13,7 @@ class MedsPage extends React.Component {
     }
 
     clearMed() {
-    	this.props.dispatch(actions.clearMed());
+    	this.props.dispatch(actions.deselectMed());
     }
 
 	render() {

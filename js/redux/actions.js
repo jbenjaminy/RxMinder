@@ -1,15 +1,244 @@
-        this.props.dispatch(actions.fetchSchedule());
-        addMed
-        selectMed
-        this.deleteMed = this.deleteMed.bind(this);
-        this.submitEdit = this.submitEdit.bind(this);
-        this.cancelEdit = this.cancelEdit.bind(this);
-        fetchHistory
-        clearMed
-        this.editMed = this.editMed.bind(this);
-        fetchMeds
+import fetch from 'isomorphic-fetch';
 
-var fetch = require('isomorphic-fetch');
+// Get updated lists of scheduled and due medication
+let fetchSchedule = () => {
+    return (dispatch) => {
+        let url = '/medication';
+        let request = {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        };
+        return fetch(url, request)
+        .then((response) => {
+            if (response.status < 200 || response.status >= 300) {
+                let error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+            return response;
+        })
+        .then((response) =>{
+            return response.json();
+        })
+        .then((data) => {
+            return {
+                type: 'updateMedList',
+                data: {
+                    due: data.dueMeds,
+                    list: data.upcomingMeds
+                }
+            };
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+};
+
+// Get a complete list of all medications
+let fetchMeds = () => {
+    return (dispatch) => {
+        let url = '/medication';
+        let request = {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        };
+        return fetch(url, request)
+        .then((response) => {
+            if (response.status < 200 || response.status >= 300) {
+                let error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+            return response;
+        })
+        .then((response) =>{
+            return response.json();
+        })
+        .then((data) => {
+            return {
+                type: 'updateMedList',
+                data: {
+                    due: data.dueMeds,
+                    list: data.upcomingMeds
+                }
+            };
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+};
+
+// Get a list of medication history
+let fetchHistory = () => {
+    return (dispatch) => {
+        let url = '/medication';
+        let request = {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        };
+        return fetch(url, request)
+        .then((response) => {
+            if (response.status < 200 || response.status >= 300) {
+                let error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+            return response;
+        })
+        .then((response) =>{
+            return response.json();
+        })
+        .then((data) => {
+            return {
+                type: 'updateMedList',
+                data: {
+                    due: data.dueMeds,
+                    list: data.upcomingMeds
+                }
+            };
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+};
+
+// Add a new medication to the database
+let addMed = () => {
+    return (dispatch) => {
+        let url = '/medication';
+        let request = {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        };
+        return fetch(url, request)
+        .then((response) => {
+            if (response.status < 200 || response.status >= 300) {
+                let error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+            return response;
+        })
+        .then((response) =>{
+            return response.json();
+        })
+        .then((data) => {
+            return {
+                type: 'updateMedList',
+                data: {
+                    due: data.dueMeds,
+                    list: data.upcomingMeds
+                }
+            };
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+};
+
+// Add a new entry to the medication history
+let addHistory = () => {
+    return (dispatch) => {
+        let url = '/medication';
+        let request = {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        };
+        return fetch(url, request)
+        .then((response) => {
+            if (response.status < 200 || response.status >= 300) {
+                let error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+            return response;
+        })
+        .then((response) =>{
+            return response.json();
+        })
+        .then((data) => {
+            return {
+                type: 'updateMedList',
+                data: {
+                    due: data.dueMeds,
+                    list: data.upcomingMeds
+                }
+            };
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+};
+
+// Get the details for a particular medication
+let selectMed = () => {
+    return (dispatch) => {
+        let url = '/medication';
+        let request = {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        };
+        return fetch(url, request)
+        .then((response) => {
+            if (response.status < 200 || response.status >= 300) {
+                let error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+            return response;
+        })
+        .then((response) =>{
+            return response.json();
+        })
+        .then((data) => {
+            return {
+                type: 'updateMedList',
+                data: {
+                    due: data.dueMeds,
+                    list: data.upcomingMeds
+                }
+            };
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+};
+
+// Reset state for medication details
+let deselectMed = () => {
+    return {
+        type: 'updateMedDetails',
+        data: {
+            id: '',
+            name: '',
+            dosage: '',
+            numDoses: ''
+            nextDoseSecs: '',
+            nextDoseDate: '',
+            instructions: '',
+            precautions: '',
+            edit: ''
+        }
+    };
+};
 
 // Begin editing property of a selected medication
 let editMed = (property) => {
@@ -21,131 +250,99 @@ let editMed = (property) => {
     };
 };
 
-// ON USER INPUT CHANGE
-var ADD_INPUT = 'ADD_INPUT';
-var addInput = function(tempLib) {
+// Cancel medication edit
+let cancelEdit = () => {
     return {
-        type: ADD_INPUT,
-        tempLib: tempLib
+        type: 'updateMedDetails',
+        data: {
+            edit: ''
+        }
     };
 };
 
-// GET CASINO DETAILS
-var fetchCasinoDetails = function(casinoName) {
-    return function(dispatch) {
-        var url = '/casinos/' + casinoName;
-        var request = {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            };
-        return fetch(url, request)
-        .then(function(response) {
-            if (response.status < 200 || response.status >= 300) {
-                var error = new Error(response.statusText);
-                error.response = response;
-                throw error;
+// Update medication details in the database
+let submitEdit = () => {
+    return (dispatch) => {
+        let url = '/medication';
+        let request = {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
-            return response;
-        })
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(casino) {
-            return dispatch(
-                fetchCasinoDetailsSuccess(casino)
-            );
-        })
-        .catch(function(error) {
-            return dispatch(
-                fetchCasinoDetailsError(error)
-            );
-        });
-    }
-};
-
-var FETCH_CASINO_DETAILS_SUCCESS = 'FETCH_CASINO_DETAILS_SUCCESS';
-var fetchCasinoDetailsSuccess = function(casino) {
-    return {
-        type: FETCH_CASINO_DETAILS_SUCCESS,
-        casino: casino
-    };
-};
-
-var FETCH_CASINO_DETAILS_ERROR = 'FETCH_CASINO_DETAILS_ERROR';
-var fetchCasinoDetailsError = function(error) {
-    return {
-        type: FETCH_CASINO_DETAILS_ERROR,
-        error: error
-    };
-};
-
-// GET TOURNAMENT INFO
-var fetchTournamentInfo = function(casinoName) {
-    return function(dispatch) {
-        var url = '/casinos/' + casinoName + '/tournaments';
-        var request = { 
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
         };
         return fetch(url, request)
-        .then(function(response) {
+        .then((response) => {
             if (response.status < 200 || response.status >= 300) {
-                var error = new Error(response.statusText);
+                let error = new Error(response.statusText);
                 error.response = response;
                 throw error;
             }
             return response;
         })
-        .then(function(response) {
+        .then((response) =>{
             return response.json();
         })
-        .then(function(tournaments) {
-            return dispatch(
-                fetchTournamentInfoSuccess(tournaments)
-            );
+        .then((data) => {
+            return {
+                type: 'updateMedList',
+                data: {
+                    due: data.dueMeds,
+                    list: data.upcomingMeds
+                }
+            };
         })
-        .catch(function(error) {
-            return dispatch(
-                fetchTournamentInfoError(error)
-            );
+        .catch((error) => {
+            console.error(error);
         });
     }
 };
 
-var FETCH_TOURNAMENT_INFO_SUCCESS = 'FETCH_TOURNAMENT_INFO_SUCCESS';
-var fetchTournamentInfoSuccess = function(tournaments) {
-    return {
-        type: FETCH_TOURNAMENT_INFO_SUCCESS,
-        tournaments: tournaments
-    };
-};
-
-var FETCH_TOURNAMENT_INFO_ERROR = 'FETCH_TOURNAMENT_INFO_ERROR';
-var fetchTournamentInfoError = function(error) {
-    return {
-        type: FETCH_TOURNAMENT_INFO_ERROR,
-        error: error
-    };
+// Delete medication from the database
+let deleteMed = () => {
+    return (dispatch) => {
+        let url = '/medication';
+        let request = {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        };
+        return fetch(url, request)
+        .then((response) => {
+            if (response.status < 200 || response.status >= 300) {
+                let error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+            return response;
+        })
+        .then((response) =>{
+            return response.json();
+        })
+        .then((data) => {
+            return {
+                type: 'updateMedList',
+                data: {
+                    due: data.dueMeds,
+                    list: data.upcomingMeds
+                }
+            };
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
 };
 
 /*---------- EXPORTS ---------*/
+exports.fetchSchedule = fetchSchedule;
+exports.fetchMeds = fetchMeds;
+exports.fetchHistory = fetchHistory;
+exports.addMed = addMed;
+exports.addHistory = addHistory;
+exports.selectMed = selectMed;
+exports.deselectMed = deselectMed;
 exports.editMed = editMed;
-
-exports.ADD_INPUT = ADD_INPUT;
-exports.addInput = addInput;
-
-exports.fetchCasinoDetails = fetchCasinoDetails;
-exports.FETCH_CASINO_DETAILS_SUCCESS = FETCH_CASINO_DETAILS_SUCCESS;
-exports.FETCH_CASINO_DETAILS_ERROR = FETCH_CASINO_DETAILS_ERROR;
-exports.fetchCasinoDetailsSuccess = fetchCasinoDetailsSuccess;
-exports.fetchCasinoDetailsError  = fetchCasinoDetailsError;
-
-exports.fetchTournamentInfo = fetchTournamentInfo;
-exports.FETCH_TOURNAMENT_INFO_SUCCESS = FETCH_TOURNAMENT_INFO_SUCCESS;
-exports.FETCH_TOURNAMENT_INFO_ERROR = FETCH_TOURNAMENT_INFO_ERROR;
-exports.fetchTournamentInfoSuccess = fetchTournamentInfoSuccess;
-exports.fetchTournamentInfoError = fetchTournamentInfoError;
+exports.cancelEdit = cancelEdit;
+exports.submitEdit = submitEdit;
+exports.deleteMed = deleteMed;
