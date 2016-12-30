@@ -9,7 +9,7 @@ class MedDetails extends React.Component {
         super();
         this.editMed = this.editMed.bind(this);
         this.deleteMed = this.deleteMed.bind(this);
-        this.submitEdit = this.deleteMed.bind(this);
+        this.submitEdit = this.submitEdit.bind(this);
         this.cancelEdit = this.cancelEdit.bind(this);
     }
 

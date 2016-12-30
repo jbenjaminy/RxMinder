@@ -14,7 +14,7 @@ class LandingPage extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(actions.fetchMedsSched());
+        this.props.dispatch(actions.fetchSchedule());
     }
 
     componentWillReceiveProps(nextProps) {

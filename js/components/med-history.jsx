@@ -12,7 +12,7 @@ class MedHistory extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(actions.fetchMedsHistory());
+        this.props.dispatch(actions.fetchHistory());
     }
 
     componentWillReceiveProps(nextProps) {
