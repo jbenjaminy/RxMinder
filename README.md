@@ -196,6 +196,11 @@ __Exit the database command prompt__
 
 ### Run the app locally ###
 
+* Install node modules:
+```
+ $ npm install
+```
+
 * Create a new build:
 ```
  $ npm run build
