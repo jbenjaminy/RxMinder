@@ -5,3 +5,5 @@
         this.deleteMed = this.deleteMed.bind(this);
         this.submitEdit = this.deleteMed.bind(this);
         this.cancelEdit = this.cancelEdit.bind(this);
+        fetchMedsSched
+        clearMed
