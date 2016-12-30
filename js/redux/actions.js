@@ -76,7 +76,7 @@ let fetchMeds = () => {
 // Get a list of medication history
 let fetchHistory = () => {
     return (dispatch) => {
-        let url = '/medication';
+        let url = '/medication/history';
         let request = {
             headers: {
                 'Accept': 'application/json',
@@ -99,8 +99,7 @@ let fetchHistory = () => {
             return {
                 type: 'updateMedList',
                 data: {
-                    due: data.dueMeds,
-                    list: data.upcomingMeds
+                    list: data.doseHistory
                 }
             };
         })
@@ -111,14 +110,23 @@ let fetchHistory = () => {
 };
 
 // Add a new medication to the database
-let addMed = () => {
+let addMed = (name, dosage, numDoses, firstDose, instructions, precautions) => {
     return (dispatch) => {
-        let url = '/medication';
+        let url = '/medication/new';
         let request = {
+            method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify({ 
+                name: name,
+                dosage: dosage,
+                numDoses: numDoses,
+                firstDose: firstDose,
+                instructions: instructions,
+                precautions: precautions
+            })
         };
         return fetch(url, request)
         .then((response) => {
@@ -134,11 +142,8 @@ let addMed = () => {
         })
         .then((data) => {
             return {
-                type: 'updateMedList',
-                data: {
-                    due: data.dueMeds,
-                    list: data.upcomingMeds
-                }
+                type: 'updateMedDetails',
+                data: data
             };
         })
         .catch((error) => {
