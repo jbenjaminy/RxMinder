@@ -56,6 +56,22 @@ function reducer(state=initialState, action) {
                 },
   			});
     	}
+        case 'removeMedDetails': {
+            return Object.assign({}, state, {
+                medDetails: {
+                    id: "",
+                    name: "",
+                    dosage: "",
+                    numDoses: "",
+                    frequency: "",
+                    nextDoseSecs: "",
+                    nextDoseDate: "",
+                    instructions: "",
+                    precautions: "",
+                    edit: ""
+                },
+            });
+        }
         case 'updateNotifications': {
             let notifications = state.notifications.slice();
             notifications.push(action.data.notification)

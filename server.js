@@ -29,6 +29,8 @@ app.use((request, response, next) => {
 // Select all medication entries from medication table and separate out the ones that are due to be taken
 app.get('/medication', jsonParser, (request, response) => {
 	let time = new Date().getTime() / 1000;
+    let date = new Date(0);
+    console.log('time', time, 'date', date);
 	let dueMeds = [];
 	let upcomingMeds = [];
 	knex.select()

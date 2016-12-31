@@ -26,6 +26,8 @@ class MedDetails extends React.Component {
     deleteMed(id) {
     	this.props.dispatch(actions.deleteMed(id));
         this.props.dispatch(actions.deselectMed());
+        this.props.dispatch(actions.fetchSchedule());
+        browserHistory.push('/');
     }
 
     submitEdit(event) {

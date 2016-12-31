@@ -207,20 +207,10 @@ let selectMed = (id) => {
 
 // Reset state for medication details
 let deselectMed = () => {
+    console.log('here');
     return {
-        type: 'updateMedDetails',
-        data: {
-            id: '',
-            name: '',
-            dosage: '',
-            numDoses: '',
-            frequency: '',
-            nextDoseSecs: '',
-            nextDoseDate: '',
-            instructions: '',
-            precautions: '',
-            edit: ''
-        }
+        type: 'removeMedDetails',
+        data: {}
     };
 };
 
