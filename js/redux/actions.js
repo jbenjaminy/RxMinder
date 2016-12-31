@@ -226,9 +226,7 @@ let editMed = (property) => {
 let cancelEdit = () => {
     return {
         type: 'updateMedDetails',
-        data: {
-            edit: ''
-        }
+        data: {}
     };
 };
 

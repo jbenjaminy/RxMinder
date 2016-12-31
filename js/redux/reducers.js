@@ -40,7 +40,7 @@ function reducer(state=initialState, action) {
             let nextDoseDate = action.data.nextDoseDate || state.medDetails.nextDoseDate;
             let instructions = action.data.instructions || state.medDetails.instructions;
             let precautions = action.data.precautions || state.medDetails.precautions;
-            let edit = action.data.edit || state.medDetails.edit;
+            let edit = action.data.edit || "";
     		return Object.assign({}, state, {
                 medDetails: {
                     id: id,
