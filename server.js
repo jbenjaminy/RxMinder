@@ -30,7 +30,6 @@ app.use((request, response, next) => {
 app.get('/medication', jsonParser, (request, response) => {
 	let time = new Date().getTime() / 1000;
     let date = new Date(0);
-    console.log('time', time, 'date', date);
 	let dueMeds = [];
 	let upcomingMeds = [];
 	knex.select()
@@ -45,7 +44,6 @@ app.get('/medication', jsonParser, (request, response) => {
                     upcomingMeds.push({id: med.id, name: med.name, dosage: med.dosage, numDoses: med.num_doses, frequency: med.frequency, nextDoseSecs: med.next_dose_secs, nextDoseDate: med.next_dose_date, instructions: med.instructions, precautions: med.precautions});
         		}
         	});
-            console.log(dueMeds, upcomingMeds);
         	return response.status(200).json({
         		dueMeds: dueMeds, upcomingMeds: upcomingMeds
         	});
@@ -77,13 +75,11 @@ app.get('/medication/all', jsonParser, (request, response) => {
 // Select the details of a specific medication by id
 app.get('/medication/:id', jsonParser, (request, response) => {
 	let id = request.params.id;
-    console.log('id', id);
 	knex.select()
         .from('medication')
         .where({ id: id })
         .returning(['id', 'name', 'dosage', 'num_doses', 'frequency', 'next_dose_secs', 'next_dose_date', 'instructions', 'precautions'])
         .then((medication) => {
-            console.log('medication', medication);
             return response.status(200).json({
             	id: medication[0].id, name: medication[0].name, dosage: medication[0].dosage, frequency: medication[0].frequency, numDoses: medication[0].num_doses, nextDoseSecs: medication[0].next_dose_secs, nextDoseDate: medication[0].next_dose_date, instructions: medication[0].instructions, precautions: medication[0].precautions
             });
@@ -131,13 +127,11 @@ app.post('/medication/new', jsonParser, (request, response) => {
 	let nextDoseDate = new Date(0);
 	nextDoseDate.setUTCSeconds(nextDoseSecs);
     nextDoseSecs = nextDoseSecs.toString();
-    console.log('name', name, 'dosage', dosage, 'numDoses', numDoses, 'frequency', frequency, 'nextDoseDate', nextDoseDate, 'nextDoseSecs', nextDoseSecs, 'instructions', instructions, 'precautions', precautions);
 
 	knex.insert({ name: name, dosage: dosage, num_doses: numDoses, frequency: frequency, next_dose_secs: nextDoseSecs, next_dose_date: nextDoseDate, instructions: instructions, precautions: precautions })
         .returning(['id', 'name', 'dosage', 'num_doses', 'frequency', 'next_dose_secs', 'next_dose_date', 'instructions', 'precautions'])
         .into('medication')
         .then((data) => {
-            console.log(data);
             return response.status(201).json({
             	id: data[0].id, name: data[0].name, dosage: data[0].dosage, numDoses: data[0].num_doses, frequency: data[0].frequency, nextDoseSecs: data[0].next_dose_secs, nextDoseDate: data[0].next_dose_date, instructions: data[0].instructions, precautions: data[0].precautions
             });

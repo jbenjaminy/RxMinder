@@ -174,7 +174,6 @@ let addHistory = (id) => {
 
 // Get the details for a particular medication
 let selectMed = (id) => {
-    console.log('id', id);
     return (dispatch) => {
         let url = `/medication/${id}`;
         let request = {
@@ -193,7 +192,6 @@ let selectMed = (id) => {
             return response.json();
         })
         .then((data) => {
-            console.log('data', data);
             return dispatch ({
                 type: 'updateMedDetails',
                 data: data
@@ -207,7 +205,6 @@ let selectMed = (id) => {
 
 // Reset state for medication details
 let deselectMed = () => {
-    console.log('here');
     return {
         type: 'removeMedDetails',
         data: {}
@@ -216,6 +213,7 @@ let deselectMed = () => {
 
 // Begin editing property of a selected medication
 let editMed = (property) => {
+    console.log('property', property);
     return {
         type: 'updateMedDetails',
         data: {
