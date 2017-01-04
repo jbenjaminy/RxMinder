@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-const knex = require('./backend/database/connect')
+const knex = require('./backend/database/connect');
 
 
 /*--------- EXPRESS CONFIG ----------*/
@@ -183,13 +183,18 @@ app.post('/history/new/:id', jsonParser, (request, response) => {
 
 // Edit the details of an existing medication
 app.put('/medication/update/:id', jsonParser, (request, response) => {
+    let id = request.params.id;
 	let column = request.body.editProp;
 	let value = request.body.editVal;
-	knex.update({column: value})
-        .from('medication')
-		.where({id: id})
-		.then((medication) => {
-			return response.status(200).json({
+    console.log('params', id, column, value);
+    knex('medication')
+        .whereIn('id', id)
+        .update({
+            [column]: value
+        })
+	   .then((medication) => {
+            console.log('medication', medication);
+            return response.status(200).json({
                 result: 'Medication edited successfully.'
 			})
 		})

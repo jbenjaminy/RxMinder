@@ -34,7 +34,8 @@ class MedDetails extends React.Component {
     	event.preventDefault();
     	let editProp = this.props.medDetails.edit;
         let editVal = this.refs.editVal.value;
-        let id = this.props.medDetails.id
+        let id = this.props.medDetails.id;
+        console.log('params', editVal, editProp, id);
     	if (this.props.medDetails.edit === 'hours to next dose') {
     		editProp = 'next_dose_secs'
             editVal = editVal * 3600;
