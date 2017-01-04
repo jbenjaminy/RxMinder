@@ -81,7 +81,10 @@ class LandingPage extends React.Component {
 
         if (dueFeed.length === 0) {
             dueMessage = '';
-        } 
+        }
+        if (upcomingFeed.length === 0) {
+            upcomingMessage = '';
+        }
         if (upcomingFeed.length === 0 && dueFeed.length === 0) {
             dueMessage = 'You have no medication scheduled.';
             upcomingMessage = '';
