@@ -161,10 +161,7 @@ let addHistory = (id) => {
             return response.json();
         })
         .then((data) => {
-            return dispatch ({
-                type: 'upcomingMeds',
-                data: {}
-            });
+            console.log('History added successfully');
         })
         .catch((error) => {
             console.error(error);
@@ -255,9 +252,10 @@ let submitEdit = (id, editProp, editVal) => {
             return response.json();
         })
         .then((data) => {
+            console.log('data', data);
             return dispatch ({
-                type: 'upcomingMeds',
-                data: {}
+                type: 'updateMedDetails',
+                data: data
             });
         })
         .catch((error) => {
@@ -288,7 +286,7 @@ let deleteMed = (id) => {
         })
         .then((data) => {
             return dispatch ({
-                type: 'upcomingMeds',
+                type: 'removeMedDetails',
                 data: {}
             });
         })

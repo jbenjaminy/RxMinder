@@ -120,7 +120,7 @@ app.post('/medication/new', jsonParser, (request, response) => {
 	let precautions = request.body.precautions;
 
 	let frequency = Math.floor(24 / numDoses);
-	frequecy = 3600 * frequency;
+	frequency = 3600 * frequency;
 	firstDose = 3600 * firstDose;
 	let time = new Date().getTime() / 1000;
 	let nextDoseSecs = firstDose + time;
@@ -148,6 +148,7 @@ app.post('/history/new/:id', jsonParser, (request, response) => {
 	let id = request.params.id;
 	const promise = selectMed(id);
     promise.then((data) => {
+        console.log('data', data);
 		knex.insert({ med_id: data.medId, med_name: data.medName, med_dosage: data.medDosage })
         	.into('dose_history')
         	.then((data) => {
@@ -186,16 +187,16 @@ app.put('/medication/update/:id', jsonParser, (request, response) => {
     let id = request.params.id;
 	let column = request.body.editProp;
 	let value = request.body.editVal;
-    console.log('params', id, column, value);
     knex('medication')
         .whereIn('id', id)
         .update({
             [column]: value
         })
-	   .then((medication) => {
-            console.log('medication', medication);
+        .returning(['id', 'name', 'dosage', 'num_doses', 'frequency', 'next_dose_secs', 'next_dose_date', 'instructions', 'precautions'])
+        .then((data) => {
+            console.log('data', data);
             return response.status(200).json({
-                result: 'Medication edited successfully.'
+                id: data[0].id, name: data[0].name, dosage: data[0].dosage, numDoses: data[0].num_doses, frequency: data[0].frequency, nextDoseSecs: data[0].next_dose_secs, nextDoseDate: data[0].next_dose_date, instructions: data[0].instructions, precautions: data[0].precautions
 			})
 		})
 		.catch((error) => {

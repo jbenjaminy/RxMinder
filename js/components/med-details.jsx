@@ -36,25 +36,13 @@ class MedDetails extends React.Component {
         let editVal = this.refs.editVal.value;
         let id = this.props.medDetails.id;
         console.log('params', editVal, editProp, id);
-    	if (this.props.medDetails.edit === 'hours to next dose') {
-    		editProp = 'next_dose_secs'
-            editVal = editVal * 3600;
-            editVal = editVal + parseInt(this.props.medDetails.nextDoseSecs);
-    	}
         if (this.props.medDetails.edit === 'doses per day') {
             editProp = 'num_doses'
-            let frequency = Math.floor(24 / numDoses);
-            frequecy = 3600 * frequency;
-            let nextDoseSecs = parseInt(this.props.medDetails.nextDoseSecs) + (frequency - this.props.medDetails.frequency);
-            let nextDoseDate = new Date(0);
-            nextDoseSecs = nextDoseSecs.toString();
-            nextDoseDate.setUTCSeconds(nextDoseSecs);
+            let frequency = Math.floor(24 / this.props.medDetails.numDoses);
+            frequency = 3600 * frequency;
             this.props.dispatch(actions.submitEdit(id, 'frequency', frequency));
-            this.props.dispatch(actions.submitEdit(id, 'next_dose_secs', nextDoseSecs));
-            this.props.dispatch(actions.submitEdit(id, 'next_dose_date', nextDoseDate));
         }
     	this.props.dispatch(actions.submitEdit(id, editProp, editVal));
-        this.props.dispatch(actions.selectMed(id));
     }
 
     cancelEdit() {
@@ -80,9 +68,9 @@ class MedDetails extends React.Component {
     				<li><button type="button" onClick={this.editMed.bind(this, 'name')}>Edit</button><h3>name: <span className='titles'>{this.props.medDetails.name}</span></h3></li>
     				<li><button type="button" onClick={this.editMed.bind(this, 'dosage')}>Edit</button><h3>dosage: <span className='titles'>{this.props.medDetails.dosage} mg</span></h3></li>
     				<li><button type="button" onClick={this.editMed.bind(this, 'doses per day')}>Edit</button><h3>doses per day: <span className='titles'>{this.props.medDetails.numDoses}x daily</span></h3></li>
-    				<li><button type="button" onClick={this.editMed.bind(this, 'hours to next dose')}>Edit</button><h3>next dose: <span className='titles'>{time}</span></h3></li>
     				<li><button type="button" onClick={this.editMed.bind(this, 'instructions')}>Edit</button><h3>instructions: <span className='titles'>{this.props.medDetails.instructions}</span></h3></li>
     				<li><button type="button" onClick={this.editMed.bind(this, 'precautions')}>Edit</button><h3>precautions: <span className='titles'>{this.props.medDetails.precautions}</span></h3></li>
+                    <li><h3>next dose: <span className='titles'>{time}</span></h3></li>
     			</ul>
     			<button type="button" onClick={this.deleteMed.bind(this, this.props.medDetails.id)}>Delete</button>
     		</div>

@@ -29,14 +29,15 @@ class LandingPage extends React.Component {
     }
 
     markDose(id, frequency, nextDoseSecs) {
-        let nextDoseSecsEdit = parseInt(nextDoseSecs) + frequency;
+        let time = new Date().getTime() / 1000;
+        let nextDoseSecsEdit = frequency + time;
         let nextDoseDate = new Date(0);
         nextDoseDate.setUTCSeconds(nextDoseSecsEdit);
-        nextDoseSecsEdit = nextDoseSecsEdit.toString();
-
+        nextDoseSecs = nextDoseSecs.toString();
         this.props.dispatch(actions.submitEdit(id, 'next_dose_secs', nextDoseSecsEdit));
         this.props.dispatch(actions.submitEdit(id, 'next_dose_date', nextDoseDate));
         this.props.dispatch(actions.addHistory(id));
+        this.props.dispatch(actions.deselectMed());
         this.props.dispatch(actions.fetchSchedule());
     }
 
@@ -48,6 +49,7 @@ class LandingPage extends React.Component {
 
         this.props.dispatch(actions.submitEdit(id, 'next_dose_secs', nextDoseSecsEdit));
         this.props.dispatch(actions.submitEdit(id, 'next_dose_date', nextDoseDate));
+        this.props.dispatch(actions.deselectMed());
         this.props.dispatch(actions.fetchSchedule());
     }
 
